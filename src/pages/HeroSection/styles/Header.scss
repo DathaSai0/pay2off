@@ -1,0 +1,55 @@
+
+@use "../../../variables.scss" as *;
+.header {
+    background-color:$primary-bg; 
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  
+      img {
+        width: 32px;
+        height: 32px;
+      }
+  
+      span {
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+      }
+    }
+  
+    .location-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+  
+      .location_desk {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: #A33B00;
+  
+        svg {
+          margin-right: 4px;
+          color: #ff5722;
+        }
+      }
+  
+      .locate-button {
+        background-color: #ffffff;
+       color: $primary-color;
+       padding: 10px;
+       border-radius: 20px;
+       border:1px solid $primary-color;
+       font-weight: 600;
+       
+      }
+    }
+  }
+  
