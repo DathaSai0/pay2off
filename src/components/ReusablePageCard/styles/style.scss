@@ -1,15 +1,13 @@
 .page-card-container {
-  width: 400px;
-  height: 135px;
+  min-width: 200px;
+  min-height: 135px;
   background-color: #ffffff;
-  //   padding: 20px 30px;
   padding: 16px;
   border-radius: 14px;
   display: flex;
   position: relative;
   box-shadow: 0px 2px 8px 0px #00000014;
   cursor: pointer;
-  margin-right: 25px;
 }
 // .page-card-container:hover {
 //   background-color: #fbfbfb;

@@ -1,9 +1,10 @@
 .home-page-user-vendor-marketer-conatiner {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  // width: 60%;
-  padding: 0px 330px;
+  width: 100%;
+  gap: 16px;
+  // padding: 0px 330px;
   // margin: 0px 250px;
 }
 
