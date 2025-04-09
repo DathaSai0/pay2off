@@ -7,6 +7,7 @@ import "./styles/style.scss";
 import { Helmet } from "react-helmet";
 import PartnerCard from "../../components/partner";
 import defaultImage from "../../assets/Images/exampleImage.png";
+import HowItWorks from "../../components/howItWorks";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
@@ -36,6 +37,16 @@ function Home() {
             content={card?.description}
           />
         ))}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <HowItWorks />
       </div>
     </>
   );
