@@ -1,0 +1,55 @@
+// components/common/Modal.scss
+@use "../../variables.scss" as *;
+.custom-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .custom-modal {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    min-width: 600px;
+    max-width: 90%;
+    height: 70%;
+    position: relative;
+
+    @media (max-width: 767px) {
+      min-width: 90%;
+      width: 90%;
+      height: 80%;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-y: auto;
+    }
+  
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    color: $primary-color;
+    @media (max-width: 767px) {
+      font-size: 2.2rem;
+    }
+  }
+  .children{
+    padding: 1.2rem;
+    @media (max-width: 767px) {
+      padding: 1rem;
+    }
+  }
+  
