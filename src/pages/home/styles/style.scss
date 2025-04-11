@@ -1,17 +1,183 @@
 .home-page-user-vendor-marketer-conatiner {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
   gap: 16px;
-  // padding: 0px 330px;
-  // margin: 0px 250px;
+  margin-top: 50px;
 }
 
-.vendor-card-container {
+
+.testimonial-container {
+  position: relative;
+  padding: 40px;
+  background-color: #fef9f4;
+  border-radius: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  min-height: 320px;
+}
+
+.testimonial-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 260px;
-  margin-top: 100px;
+  background-color: #a43f0d;
+  color: white;
+  padding: 20px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  position: relative;
 }
+
+.review-tag {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.review-user {
+  flex: 1;
+  text-align: right;
+  padding-right: 70px;
+}
+
+.review-user h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.review-user p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.review-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 35%);
+  background: white;
+  padding: 5px;
+}
+
+.testimonial-body {
+  margin-top: 60px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  position: relative;
+}
+
+.quote {
+  font-size: 40px;
+  color: #999;
+  display: block;
+}
+
+.quote.start {
+  position: absolute;
+  left: 10px;
+  top: -20px;
+}
+
+.quote.end {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border-radius: 50%;
+  padding: 10px 14px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: #f26522;
+}
+
+.swiper-button-prev {
+  left: -25px;
+}
+
+.swiper-button-next {
+  right: -25px;
+}
+
+/* You can put this in App.css or global styles */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-container {
+  position: relative;
+  // max-width: 100%;
+  padding: 20px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 50px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &.left {
+    left: 20px;
+  }
+
+  &.right {
+    right: 20px;
+  }
+}
+
+.carousel-content {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 0 40px;
+}
+
+// Optional hide-scrollbar utility class
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+
+
+
+
+

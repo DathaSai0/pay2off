@@ -2,12 +2,12 @@ import React from "react";
 import ResusablePageCard from "../../components/ReusablePageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangePage } from "../../Redux/pageTypeSlice";
-import { benefits, homePageCradSection } from "./constants/constants";
+import { homePageCradSection } from "./constants/constants";
 import "./styles/style.scss";
-import { Helmet } from "react-helmet";
-import PartnerCard from "../../components/partner";
-import defaultImage from "../../assets/Images/exampleImage.png";
 import HowItWorks from "../../components/howItWorks";
+import Vendors from "../vendors";
+import TestimonialCarousel from "./components/TestimonialCarousel";
+import TestimonialCard from "./components/TestimonilaCard";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
@@ -29,25 +29,15 @@ function Home() {
           />
         ))}
       </div>
-      <div className="vendor-card-container">
-        {benefits?.map((card) => (
-          <PartnerCard
-            image={defaultImage}
-            title={card?.title}
-            content={card?.description}
-          />
-        ))}
-      </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <HowItWorks />
-      </div>
+      <Vendors />
+
+      <TestimonialCarousel>
+        <TestimonialCard />
+        <TestimonialCard />
+        <TestimonialCard />
+        <TestimonialCard />
+      </TestimonialCarousel>
     </>
   );
 }
