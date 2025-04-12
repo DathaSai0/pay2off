@@ -175,7 +175,16 @@
     display: none; /* Chrome, Safari, Opera */
   }
 }
-
+.fixed-question-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensures it's above most content */
+  background-color: #ff5a1f;
+  border-radius: 50%;
+  padding: 0.4rem;
+  cursor: pointer;
+}
 
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ResusablePageCard from "../../components/ReusablePageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangePage } from "../../Redux/pageTypeSlice";
@@ -9,10 +9,18 @@ import Vendors from "../vendors";
 import TestimonialCarousel from "./components/TestimonialCarousel";
 import TestimonialCard from "./components/TestimonilaCard";
 import CouponCard from "../../components/CuponCard/CouponCard";
+import { LuMessageCircleQuestion } from "react-icons/lu";
+import DialogModal from "../../components/DialogModal/Index";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
   const dispatch = useDispatch();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openRequestModal = () => {
+    setIsModalOpen(true);
+  };
 
   console.log(pageType, "pageType");
 
@@ -43,6 +51,15 @@ function Home() {
         <TestimonialCard />
         <TestimonialCard />
       </TestimonialCarousel>
+
+      <div class="fixed-question-icon" onClick={openRequestModal}>
+        <LuMessageCircleQuestion size={40} color="#ffffff" />
+      </div>
+
+      <DialogModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      ></DialogModal>
     </>
   );
 }

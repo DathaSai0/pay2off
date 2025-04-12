@@ -2,7 +2,7 @@
 .footer {
     background-color: black;
     color: #fff;
-    padding: 2rem 1.5rem;
+    padding: 2rem 5rem;
     font-size: 14px;
   
     .footer-top {
@@ -16,7 +16,7 @@
       
       .footer-section {
         flex: 1 1 22%; // ensures ~4 equal columns
-        min-width: 250px; // fallback for small screens
+        min-width: 200px; // fallback for small screens
         max-width: 25%;
         // flex: 1 1 200px;
   
@@ -140,6 +140,9 @@
   }
   
   @media (max-width: 768px) {
+    .footer{
+      padding: 1rem;
+    }
     .footer-top {
       flex-direction: column;
       gap: 1rem !important;
