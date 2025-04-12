@@ -8,6 +8,7 @@ import HowItWorks from "../../components/howItWorks";
 import Vendors from "../vendors";
 import TestimonialCarousel from "./components/TestimonialCarousel";
 import TestimonialCard from "./components/TestimonilaCard";
+import CouponCard from "../../components/CuponCard/CouponCard";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
@@ -31,6 +32,10 @@ function Home() {
       </div>
 
       <Vendors />
+      <br />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CouponCard />
+      </div>
 
       <TestimonialCarousel>
         <TestimonialCard />

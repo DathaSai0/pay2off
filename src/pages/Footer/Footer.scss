@@ -59,9 +59,19 @@
           display: flex;
           gap: 0.5rem;
   
-          span {
-            font-size: 18px;
+          svg {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            padding: 4px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             cursor: pointer;
+            transition: transform 0.2s ease;
+        
+            &:hover {
+              transform: scale(1.1);
+            }
           }
         }
   
