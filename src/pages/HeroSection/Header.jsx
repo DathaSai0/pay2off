@@ -65,8 +65,11 @@ const NavBar = () => {
               </h2>
 
               <div className="breadcrumb">
-                <IoMdHome size={20} /> Home{" "}
-                <span style={{ color: "black" }}>| FAQ</span>
+                <a href="/">
+                  <IoMdHome size={20} />
+                  <span>Home</span>
+                </a>
+                <span>| FAQ</span>
               </div>
             </div>
           </>

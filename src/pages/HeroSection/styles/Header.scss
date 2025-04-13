@@ -210,12 +210,33 @@
     }
   }
 
-  .breadcrumb{
+  .breadcrumb {
     display: flex;
     align-items: center;
-    color:blue;
-    gap:8px
+    gap: 8px;
+  
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px; // Add gap between icon and text
+      color: rgb(89, 89, 192);
+      font-weight: 500;
+      span{
+        color: rgb(89, 89, 192);
+        font-size:16px
+      }
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    span {
+      color: black;
+    }
   }
+  
   .faq_background {
     background: 
     linear-gradient(rgba(228, 206, 150, 0.7), rgba(228, 206, 150, 0.7)),
