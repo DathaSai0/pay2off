@@ -14,14 +14,31 @@ const RequestModal = () => {
   };
   return (
     <>
-      <div class="fixed-question-icon" onClick={openRequestModal}>
+      <div
+        class="fixed-question-icon"
+        onClick={!isModalOpen ? openRequestModal : undefined}
+        style={{
+          pointerEvents: isModalOpen ? "none" : "auto",
+          opacity: isModalOpen ? 0.1 : 1, // optional visual feedback
+          cursor: isModalOpen ? "default" : "pointer",
+        }}
+      >
         <LuMessageCircleQuestion size={40} color="#ffffff" />
       </div>
 
       <DialogModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        style={{ minWidth: "400px", padding: "16px" }}
+        // style={{ minWidth: "400px", padding: "16px" }}
+        style={{
+          minWidth: "30%",
+          width: "90%",
+          maxWidth: "400px",
+          padding: "16px",
+          height: "auto",
+          borderRadius: "12px",
+          boxSizing: "border-box",
+        }}
       >
         <div className="request-form">
           <label htmlFor="phone">

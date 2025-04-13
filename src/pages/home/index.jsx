@@ -48,7 +48,18 @@ function Home() {
       {/* <Vendors /> */}
       <Vendors />
       <br />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px",
+          padding: "16px",
+        }}
+      >
+        <CouponCard />
+        <CouponCard />
+        <CouponCard />
         <CouponCard />
       </div>
 

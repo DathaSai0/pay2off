@@ -1,6 +1,6 @@
 import "./Modal.scss";
 
-const DialogModal = ({ isOpen, onClose, style, children }) => {
+const DialogModal = ({ isOpen, onClose, style, closeBtn, children }) => {
   if (!isOpen) return null;
   return (
     <>
@@ -10,9 +10,12 @@ const DialogModal = ({ isOpen, onClose, style, children }) => {
           style={style}
           onClick={(e) => e.stopPropagation()}
         >
-          <button className="modal-close" onClick={onClose}>
-            &times;
-          </button>
+          {!closeBtn && (
+            <button className="modal-close" onClick={onClose}>
+              &times;
+            </button>
+          )}
+
           <div className="children">{children}</div>
         </div>
       </div>
