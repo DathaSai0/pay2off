@@ -209,5 +209,43 @@
       }
     }
   }
+
+  .breadcrumb{
+    display: flex;
+    align-items: center;
+    color:blue;
+    gap:8px
+  }
+  .faq_background {
+    background: 
+    linear-gradient(rgba(228, 206, 150, 0.7), rgba(228, 206, 150, 0.7)),
+    url("../../../assets/Images/userBanner.png") center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 1rem;
+    .header_content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      gap: 1.5rem;
+  
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: black;
+  
+        .header_primary {
+          color: $primary-color;
+        }
+      }
+  
+     
+    }
+  }
+  
   
   

@@ -27,7 +27,9 @@ const Footer = () => {
             <li>Terms & Conditions</li>
             <li>Privacy Policy</li>
             <li>Refund Policy</li>
-            <li>FAQ</li>
+            <li>
+              <a href="/FAQs">FAQ</a>
+            </li>
             <li>Blog</li>
             <li>Contact Us</li>
           </ul>
