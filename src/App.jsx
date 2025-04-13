@@ -1,15 +1,21 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import AppLayout from "./pages/appLayout";
+import Contact from "./pages/contact";
+import { useJsApiLoader } from "@react-google-maps/api";
+import { REACT_GOOGLE_MAP_API_KEY } from "./constants/constant";
 
 function App() {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: REACT_GOOGLE_MAP_API_KEY,
+    libraries: ["places"],
+  });
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} /> */}
+        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/contact" element={<Contact isLoaded={isLoaded} />} />
       </Routes>
     </Router>
   );

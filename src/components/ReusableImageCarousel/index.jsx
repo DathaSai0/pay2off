@@ -4,39 +4,25 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "./styles/style.scss";
 
-const InfiniteImageCarousel = ({ images }) => {
+const InfiniteImageCarousel = ({ images, type }) => {
   return (
-    <div
-      style={{
-        position: "relative",
-        padding: "20px 40px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-      }}
-    >
+    <div className="carousel-container">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
-        spaceBetween={8}
+        spaceBetween={10}
         slidesPerView={3}
         loop={true}
         autoplay={{
-          delay: 3000,
+          delay: type === "big" ? 5000 : 3000,
           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
           dynamicBullets: true,
           renderBullet: (index, className) => {
-            return `<span class="${className}" style="
-              background: #6F6F6F;
-              width: 8px;
-              height: 8px;
-              margin: 0 4px;
-              display: inline-block;
-              border-radius: 50%;
-              transition: all 0.3s ease;
-            "></span>`;
+            return `<span class="${className} custom-bullet"></span>`;
           },
         }}
         navigation={{
@@ -47,101 +33,34 @@ const InfiniteImageCarousel = ({ images }) => {
         breakpoints={{
           0: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          1024: { slidesPerView: 4 },
+          1024: { slidesPerView: type === "big" ? 3 : 4 },
         }}
-        style={{
-          padding: "0px 5px 40px",
-        }}
+        className="custom-swiper"
       >
         {images.map((item, i) => (
           <SwiperSlide
             key={i}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
+            className="carousel-slide"
             onClick={() => alert(item)}
           >
             <img
               src={item}
+              className="carousel-image"
               style={{
-                height: "150px",
-                width: "260px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                borderRadius: "12px",
-                transition: "transform 0.3s ease",
-                cursor: "pointer",
+                width: type === "big" ? "375px" : "260px",
               }}
             />
           </SwiperSlide>
         ))}
 
-        {/* Custom Navigation Buttons */}
-        <div
-          className="custom-prev"
-          style={{
-            position: "absolute",
-            top: "40%",
-            left: "0",
-            zIndex: 10,
-            width: "40px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-            cursor: "pointer",
-            transform: "translateY(-50%)",
-          }}
-        >
-          <MdArrowBack size={36} color="#f25400" className="carousel-mobile" />
+        <div className="custom-prev nav-button">
+          <MdArrowBack size={36} color="#f25400" className="carousel-icon" />
         </div>
 
-        <div
-          className="custom-next"
-          style={{
-            position: "absolute",
-            top: "40%",
-            right: "0%",
-            zIndex: 10,
-            width: "40px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-            cursor: "pointer",
-            transform: "translateY(-50%)",
-          }}
-        >
-          <MdArrowForward
-            size={36}
-            color="#f25400"
-            className="carousel-mobile"
-          />
+        <div className="custom-next nav-button">
+          <MdArrowForward size={36} color="#f25400" className="carousel-icon" />
         </div>
       </Swiper>
-
-      {/* Pagination container (will be filled by Swiper) */}
-      <div
-        // className="swiper-pagination"
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "0",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          gap: "8px",
-        }}
-      ></div>
     </div>
   );
 };

@@ -1,0 +1,42 @@
+.custom-input-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  .custom-input-label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #6F6F6F;
+  }
+  
+  .required-star {
+    color: red;
+    margin-left: 4px;
+  }
+  
+  .custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-weight: 600;
+    outline: none;
+    transition: border 0.3s ease;
+  
+    &.error {
+      border-color: red;
+    }
+}
+
+.custom-input:focus{
+      border: 1px solid #F65800;
+
+  }
+  
+  .custom-input-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  

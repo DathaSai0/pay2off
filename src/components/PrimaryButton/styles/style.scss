@@ -1,0 +1,29 @@
+.primary-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    min-width: 100px;
+  
+    &.primary {
+      background-color: #f25400;
+      color: white;
+      border-color: #f25400;
+  
+      
+    }
+  
+    &.outlined {
+      background-color: transparent;
+      color: #f25400;
+      border-color: #f25400;
+  
+      &:hover {
+        background-color: #f255000e;
+      }
+    }
+  }
+  

@@ -3,7 +3,7 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 import "./styles/style.scss";
 
-const ReusableCarousel = ({ children }) => {
+const ReusableCarousel = ({ children, style }) => {
   const scrollRef = useRef();
 
   const scroll = (scrollOffset) => {
@@ -11,7 +11,7 @@ const ReusableCarousel = ({ children }) => {
   };
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container" style={{ ...style }}>
       <div className="carousel-button left" onClick={() => scroll(-300)}>
         <MdArrowBack size={36} color="#f25400" className="carousel-mobile" />
       </div>
