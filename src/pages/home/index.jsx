@@ -11,16 +11,11 @@ import TestimonialCard from "./components/TestimonilaCard";
 import CouponCard from "../../components/CuponCard/CouponCard";
 import { LuMessageCircleQuestion } from "react-icons/lu";
 import DialogModal from "../../components/DialogModal/Index";
+import RequestModal from "./components/RequestModal";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
   const dispatch = useDispatch();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openRequestModal = () => {
-    setIsModalOpen(true);
-  };
 
   console.log(pageType, "pageType");
 
@@ -52,14 +47,7 @@ function Home() {
         <TestimonialCard />
       </TestimonialCarousel>
 
-      <div class="fixed-question-icon" onClick={openRequestModal}>
-        <LuMessageCircleQuestion size={40} color="#ffffff" />
-      </div>
-
-      <DialogModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      ></DialogModal>
+      <RequestModal />
     </>
   );
 }
