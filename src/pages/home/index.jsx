@@ -10,6 +10,11 @@ import TestimonialCard from "./components/TestimonilaCard";
 import ReusableCarousel from "../../components/ReusableCarousel";
 import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
 import addImage from "../../assets/Images/addImage.png";
+import CouponCard from "../../components/CuponCard/CouponCard";
+import { LuMessageCircleQuestion } from "react-icons/lu";
+import DialogModal from "../../components/DialogModal/Index";
+import RequestModal from "./components/RequestModal";
+
 function Home() {
   const images = [
     addImage,
@@ -41,6 +46,11 @@ function Home() {
       </div>
 
       {/* <Vendors /> */}
+      <Vendors />
+      <br />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CouponCard />
+      </div>
 
       <InfiniteImageCarousel images={images} />
 
@@ -50,6 +60,8 @@ function Home() {
         <TestimonialCard />
         <TestimonialCard />
       </ReusableCarousel>
+
+      <RequestModal />
     </>
   );
 }

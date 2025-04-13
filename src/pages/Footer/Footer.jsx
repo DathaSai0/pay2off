@@ -1,5 +1,8 @@
 import "./Footer.scss";
 import Logo from "../../assets/Images/Pay2off Logo 1.png";
+import AppStore from "../../assets/Images/AppStore.png";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -40,7 +43,41 @@ const Footer = () => {
           </p>
 
           <h4>Social Media</h4>
-          <div className="social-icons">{/* <span>📺</span> */}</div>
+          <div className="social-icons">
+            <a
+              href="https://www.facebook.com/people/Pay2off/61555579800818/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF style={{ backgroundColor: "#1877F2" }} />
+            </a>
+            <a
+              href="https://www.instagram.com/pay2off/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram
+                style={{
+                  background:
+                    "radial-gradient(circle at 30% 107%, #fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)",
+                }}
+              />
+            </a>
+            <a
+              href="https://x.com/pay2off?s=08"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter style={{ backgroundColor: "#1DA1F2" }} />
+            </a>
+            <a
+              href="https://www.youtube.com/@PAY2OFF"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube style={{ backgroundColor: "#FF0000" }} />
+            </a>
+          </div>
         </div>
 
         <div className="footer-section">
@@ -54,10 +91,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                alt="App Store"
-              />
+              <img src={AppStore} alt="App Store" />
             </a>
             <a
               href="https://play.google.com/store/apps/details?id=com.pay2off.enduser"

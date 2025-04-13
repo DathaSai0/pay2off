@@ -1,0 +1,144 @@
+@use "../../variables.scss" as *;
+.discount-card {
+    background: #fff;
+    border: 1px solid #C6C6C6;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+  max-width: 500px;
+    // width: 500px;
+    min-height: 150px;
+    // height: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .shop-name {
+        font-size: 16px;
+        font-weight: 600;
+  
+        .tag {
+          background: #ff5a1f;
+          color: white;
+          font-size: 12px;
+          border-radius: 15px;
+          padding: 4px 8px;
+          margin-left: 8px;
+        }
+      }
+  
+      .rating {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #666;
+  
+        .star-icon {
+          color: #fbbc04;
+          margin-right: 5px;
+        }
+      }
+    }
+  
+    .offer {
+      display: flex;
+      align-items: flex-start;
+      align-items: center;
+      margin: 12px 0;
+      // border-top: 1px dashed #ccc;
+      
+  
+      .percent-icon {
+        color: #ff5a1f;
+        font-size: 2rem;
+        margin-right: 10px;
+      }
+  
+      .offer-text {
+        strong {
+          font-size: 16px;
+          color: #000;
+        }
+  
+        p {
+          font-size: 12px;
+          color: #888;
+          margin: 4px 0 0;
+        }
+      }
+    }
+  
+  
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px dashed #ccc;
+      padding-top: 12px;
+      position: relative; // 🔑 Needed for absolutely positioned pseudo-elements
+    
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: -10px; 
+        width: 14px;
+        height: 14px;
+        background-color: #fef9f4;
+        border-radius: 50%;
+        z-index: 1;
+    border-radius: 50%;
+    
+      }
+    
+      &::before {
+        left: -24px;      
+        border-right: 1px solid #C6C6C6;  
+        
+      }
+    
+      &::after {
+        right: -24px;
+        border-left: 1px solid #C6C6C6;
+      }
+    
+      .time {
+        display: flex;
+        align-items: center;
+        color: #4caf50;
+        font-size: 14px;
+    
+        .clock-icon {
+          margin-right: 5px;
+        }
+      }
+    
+      .more-details {
+        background: none;
+        border: none;
+        color: #ff5a1f;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      max-width: 90%;
+      padding: 20px;
+      min-height: 170px;
+    
+    }
+    
+  }
+
+  
+  

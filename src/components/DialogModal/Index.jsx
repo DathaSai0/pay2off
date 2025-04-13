@@ -1,11 +1,15 @@
 import "./Modal.scss";
 
-const DialogModal = ({ isOpen, onClose, children }) => {
+const DialogModal = ({ isOpen, onClose, style, children }) => {
   if (!isOpen) return null;
   return (
     <>
       <div className="custom-modal-backdrop" onClick={onClose}>
-        <div className="custom-modal" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="custom-modal"
+          style={style}
+          onClick={(e) => e.stopPropagation()}
+        >
           <button className="modal-close" onClick={onClose}>
             &times;
           </button>
