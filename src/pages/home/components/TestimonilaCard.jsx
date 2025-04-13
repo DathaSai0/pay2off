@@ -1,108 +1,38 @@
+import React from "react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import defaultImage from "../../../assets/Images/avatar_default.jpg";
+import testimonialText from "../../../assets/Images/testimonialCard.png";
+// import "./TestimonialCard.scss";
+
 const TestimonialCard = () => {
+  const name = "Lekha R";
+  const text2 = "Peacock designers";
   return (
     <div
+      className="testimonial-card"
       style={{
-        minWidth: "1000px",
-        borderRadius: "30px",
-        backgroundColor: "#FFFFFF",
-        margin: "50px",
-        paddingBottom: "48px",
-        display: "flex",
+        height: "350px",
       }}
     >
-      <span
-        style={{
-          fontSize: "46px",
-          color: "rgb(163 59 0 / 29%)",
-          transform: "rotate(-90deg)",
-          position: "relative",
-          left: "100px",
-        }}
-      >
-        Testimonial
-      </span>
+      <img src={testimonialText} className="testimonial-text" />
 
-      <div
-        style={{
-          flexGrow: 1,
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#A33B00",
-            borderBottomLeftRadius: "30px",
-            borderTopRightRadius: "30px",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "20px",
-              fontWeight: "400",
-              color: "#FFFFFF",
-            }}
-          >
-            VENDOR REVIEW
-          </h1>
+      <div className="testimonial-content">
+        <div className="testimonial-header">
+          <h1 className="testimonial-tag">VENDOR REVIEW</h1>
           <img
-            src={defaultImage} // Replace with actual image URL
+            src={defaultImage}
             alt="User Avatar"
-            style={{
-              width: "90px",
-              height: "90px",
-              border: "1px solid #F4E1D8",
-              borderRadius: "50%",
-              position: "relative",
-              top: "40px",
-            }}
+            className="testimonial-avatar"
           />
-          <div style={{}}>
-            <h3
-              style={{
-                color: "#FFFFFF",
-                fontSize: "26px",
-                fontWeight: "700",
-              }}
-            >
-              Lekha R
-            </h3>
-            <p
-              style={{
-                fontSize: "20px",
-                color: "#FFFFFF",
-                fontWeight: "500",
-              }}
-            >
-              Peacock designers
-            </p>
+          <div className="testimonial-user-details">
+            <h3>{name}</h3>
+            <p>{text2}</p>
           </div>
         </div>
 
-        <div
-          style={{
-            marginTop: "100px",
-            width: "95%",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "18px",
-              fontWeight: "400",
-              color: "#525252",
-              lineHeight: "30px",
-              marginBottom: "16p",
-            }}
-          >
-            <FaQuoteLeft
-              color="#525252"
-              style={{
-                marginRight: "12px",
-              }}
-            />
+        <div className="testimonial-body">
+          <p>
+            <FaQuoteLeft className="quote-icon left" />
             As a small business owner, I was initially hesitant about joining a
             digital platform. However, teaming up with Pay2off has been one of
             the best decisions for our shop. Their user-friendly interface made
@@ -111,12 +41,7 @@ const TestimonialCard = () => {
             engagement we've gained through Pay2off have truly exceeded our
             expectations, helping us build lasting relationships with our
             customers.
-            <FaQuoteRight
-              color="#525252"
-              style={{
-                marginLeft: "12px",
-              }}
-            />
+            <FaQuoteRight className="quote-icon right" />
           </p>
         </div>
       </div>

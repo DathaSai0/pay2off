@@ -6,10 +6,20 @@ import { homePageCradSection } from "./constants/constants";
 import "./styles/style.scss";
 import HowItWorks from "../../components/howItWorks";
 import Vendors from "../vendors";
-import TestimonialCarousel from "./components/TestimonialCarousel";
 import TestimonialCard from "./components/TestimonilaCard";
-
+import ReusableCarousel from "../../components/ReusableCarousel";
+import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
+import addImage from "../../assets/Images/addImage.png";
 function Home() {
+  const images = [
+    addImage,
+    addImage,
+    addImage,
+    addImage,
+    addImage,
+    addImage,
+    addImage,
+  ];
   const pageType = useSelector((state) => state.pageType);
   const dispatch = useDispatch();
 
@@ -30,14 +40,16 @@ function Home() {
         ))}
       </div>
 
-      <Vendors />
+      {/* <Vendors /> */}
 
-      <TestimonialCarousel>
+      <InfiniteImageCarousel images={images} />
+
+      <ReusableCarousel>
         <TestimonialCard />
         <TestimonialCard />
         <TestimonialCard />
         <TestimonialCard />
-      </TestimonialCarousel>
+      </ReusableCarousel>
     </>
   );
 }
