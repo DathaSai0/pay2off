@@ -62,8 +62,23 @@ function Home() {
 
       {/* <Vendors />
       <div style={{ display: "flex", justifyContent: "center" }}>
+      {/* <Vendors /> */}
+      <Vendors />
+      <br />
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px",
+          padding: "16px",
+        }}
+      >
         <CouponCard />
-      </div> */}
+        <CouponCard />
+        <CouponCard />
+        <CouponCard />
+      </div>
 
       <div className="category-carousel-wrapper">
         <ReusableCarousel

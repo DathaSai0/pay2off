@@ -140,5 +140,218 @@
     
   }
 
+
+
+
+  //modal css
+  // CouponModal.scss
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 9999;
+  }
+  .close_Icon{
+    position: absolute;
+    top: 21%;
+    left:61%;
+    color: #f15700;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .modal.top {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    width: 90%; // changed from min/max to flexible
+    max-width: 400px;
+    // min-width: 500px;
+    // max-width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  
+   
+  }
+  .card-topSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .shop-name {
+      font-size: 16px;
+      font-weight: 600;
+
+      .tag {
+        background: #ff5a1f;
+        color: white;
+        font-size: 12px;
+        border-radius: 15px;
+        padding: 4px 8px;
+        margin-left: 8px;
+      }
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+
+      .star-icon {
+        color: #fbbc04;
+        margin-right: 5px;
+      }
+    }
+  }
+  .offer {
+    display: flex;
+    align-items: flex-start;
+    align-items: center;
+    margin: 12px 0;
+    // border-top: 1px dashed #ccc;
+    
+
+    .percent-icon {
+      color: #ff5a1f;
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+
+    .offer-text {
+      strong {
+        font-size: 16px;
+        color: #000;
+      }
+
+      p {
+        font-size: 12px;
+        color: #888;
+        margin: 4px 0 0;
+      }
+    }
+  }
+
+
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px dashed #ccc;
+    padding-top: 12px;
+    position: relative; // 🔑 Needed for absolutely positioned pseudo-elements
+  
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: -10px; 
+      width: 14px;
+      height: 14px;
+      background-color: #fef9f4;
+      border-radius: 50%;
+      z-index: 1;
+  border-radius: 50%;
+  
+    }
+  
+    &::before {
+      left: -20px;      
+      border-right: 1px solid #C6C6C6;  
+      
+    }
+  
+    &::after {
+      right: -20px;
+      border-left: 1px solid #C6C6C6;
+    }
+  
+    .time {
+      display: flex;
+      align-items: center;
+      color: gray;
+      font-size: 14px;
+  
+      .clock-icon {
+        margin-right: 5px;
+        color:  #ff5a1f;
+      }
+    }
+  
+    .more-details {
+      background: none;
+      border: none;
+      color: #ff5a1f;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+  
+  .modal-bottom {
+    background-color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    width: 90%; // changed from min/max to flexible
+    max-width: 400px;
+    // min-width: 300px;
+    // max-width: 300px;
+    height: auto;
+  
+    .bottom_color {
+      color: brown;
+      text-align: center;
+    }
+  }
+  
+  .store-buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  
+    img {
+      width: 120px;
+      margin-right: 0.5rem;
+    }
+  }
+
+ /* Small phones (up to 420px) */
+@media (max-width: 420px) {
+  .close_Icon {
+    top: 15%;
+    left: 87%;
+  }
+}
+
+/* Phones between 421px and 568px */
+@media (min-width: 421px) and (max-width: 568px) {
+  .close_Icon {
+    top: 16%;
+    left: 80%;
+  }
+}
+
+/* Tablets between 569px and 768px */
+@media (min-width: 569px) and (max-width: 768px) {
+  .close_Icon {
+    top: 16%;
+    left: 67%;
+  }
+}
+
   
   

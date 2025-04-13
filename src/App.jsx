@@ -4,6 +4,8 @@ import Home from "./pages/home";
 import Contact from "./pages/contact";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { REACT_GOOGLE_MAP_API_KEY } from "./constants/constant";
+import AppLayout from "./pages/appLayout";
+import FAQsList from "./pages/FAQs/FAQ";
 
 function App() {
   const { isLoaded } = useJsApiLoader({
@@ -16,6 +18,9 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/contact" element={<Contact isLoaded={isLoaded} />} />
+        <Route path="/FAQs" element={<FAQsList />} />
+        {/* <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} /> */}
       </Routes>
     </Router>
   );
