@@ -33,13 +33,13 @@ const Footer = () => {
           <h4>Company</h4>
           <ul>
             <li>
-              <Link to="/About_Us" onClick={() => handleNavigation("About Us")}>
+              <Link to="/About Us" onClick={() => handleNavigation("About Us")}>
                 About Us
               </Link>
             </li>
             <li>
               <Link
-                to="/Terms&Conditions"
+                to="/Terms & Conditions"
                 onClick={() => handleNavigation("Terms & Conditions")}
               >
                 Terms & Conditions
@@ -47,7 +47,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/Privacy_Policy"
+                to="/Privacy Policy"
                 onClick={() => handleNavigation("Privacy Policy")}
               >
                 Privacy Policy
@@ -55,25 +55,25 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/Refund_Policy"
+                to="/Refund Policy"
                 onClick={() => handleNavigation("Refund Policy")}
               >
                 Refund Policy
               </Link>
             </li>
             <li>
-              <Link to="/FAQs" onClick={() => handleNavigation("FAQ")}>
+              <Link to="/FAQ" onClick={() => handleNavigation("FAQ")}>
                 FAQ
               </Link>
             </li>
             <li>
-              <Link to="/blog" onClick={() => handleNavigation("Blog")}>
+              <Link to="/Blog" onClick={() => handleNavigation("Blog")}>
                 Blog
               </Link>
             </li>
             <li>
               <Link
-                to="/contact"
+                to="/Contact Us"
                 onClick={() => handleNavigation("Contact Us")}
               >
                 Contact Us

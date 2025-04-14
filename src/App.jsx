@@ -17,9 +17,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* <Route path="/about" element={<About />} /> */}
-      <Route path="/contact" element={<Contact isLoaded={isLoaded} />} />
-      <Route path="/FAQs" element={<FAQsList />} />
-      <Route path="/blog" element={<Blog />} />
+      <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} />
+      <Route path="/FAQ" element={<FAQsList />} />
+      <Route path="/Blog" element={<Blog />} />
 
       {/* <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} /> */}
