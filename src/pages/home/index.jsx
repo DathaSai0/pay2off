@@ -60,9 +60,6 @@ function Home() {
         ))}
       </div>
 
-      {/* <Vendors />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-      {/* <Vendors /> */}
       <Vendors />
       <br />
       <div
