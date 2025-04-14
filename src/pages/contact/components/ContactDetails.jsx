@@ -4,8 +4,10 @@ import CustomInputField from "../../../components/CustomeInputField/Index";
 import CustomTextAreaField from "../../../components/CustomTextFiled";
 import PrimaryButton from "../../../components/PrimaryButton/Index";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 function ContactDetails() {
+  const navigate = useNavigate();
   return (
     <div className="contact-details-wrapper">
       <CustomInputField
@@ -24,7 +26,14 @@ function ContactDetails() {
       />
 
       <div className="button-group">
-        <PrimaryButton variant="outlined">Cancel</PrimaryButton>
+        <PrimaryButton
+          variant="outlined"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Cancel
+        </PrimaryButton>
         <PrimaryButton>Submit</PrimaryButton>
       </div>
 
