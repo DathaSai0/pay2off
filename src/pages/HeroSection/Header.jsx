@@ -5,6 +5,8 @@ import "./styles/Header.scss";
 import DialogModal from "../../components/DialogModal/Index";
 import searchIcon from "../../assets/Images/searchIcon.png";
 import userFrame from "../../assets/Images/userFrame.png";
+import vendorFrame from "../../assets/Images/vendorFrame.png";
+import marketerFrame from "../../assets/Images/marketFrame.png";
 import { IoMdHome } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -16,9 +18,39 @@ const NavBar = () => {
   const openLocationModal = () => {
     setIsModalOpen(true);
   };
-
+  const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
-  console.log(currentLink);
+  let headerText = {
+    title: "Get Discounts & Offers",
+    subtitle: "on Everything",
+    endText: "",
+  };
+  let frameImage;
+
+  switch (pageType) {
+    case "vendor":
+      frameImage = vendorFrame;
+      headerText = {
+        title: "Attract Costumers &",
+        subtitle: "Stay Busy",
+      };
+      break;
+    case "marketer":
+      frameImage = marketerFrame;
+      headerText = {
+        title: "Onboard Vendors &",
+        subtitle: "Get Rewards",
+      };
+      break;
+    case "user":
+    default:
+      frameImage = userFrame;
+      headerText = {
+        title: "Get ",
+        subtitle: "Discounts & Offers",
+        endText: "on Everything",
+      };
+  }
   // const isTrue = location.pathname === "/";
   return (
     <>
@@ -54,15 +86,19 @@ const NavBar = () => {
           <section>
             <div className="header_content">
               <h2>
-                Get<span className="header_primary"> Discounts & Offers</span>{" "}
-                on Everything
+                {headerText?.title}
+                <span className="header_primary">
+                  {" "}
+                  {headerText?.subtitle}
+                </span>{" "}
+                {headerText?.endText}
               </h2>
               <div>
                 <img src={searchIcon} />
               </div>
             </div>
             <div className="dynamic_banner">
-              <img src={userFrame} />
+              <img src={frameImage} />
             </div>
           </section>
         ) : (
