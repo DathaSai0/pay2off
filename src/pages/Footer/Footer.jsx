@@ -2,8 +2,17 @@ import "./Footer.scss";
 import Logo from "../../assets/Images/Pay2off Logo 1.png";
 import AppStore from "../../assets/Images/AppStore.png";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setCurrentLink } from "../../Redux/pageTypeSlice";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+
+  const handleNavigation = (linkName) => {
+    // Use the setFooterLink action from your slice
+    dispatch(setCurrentLink(linkName));
+  };
   return (
     <footer className="footer">
       <div className="footer-top">
@@ -23,16 +32,52 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Company</h4>
           <ul>
-            <li>About Us</li>
-            <li>Terms & Conditions</li>
-            <li>Privacy Policy</li>
-            <li>Refund Policy</li>
             <li>
-              <a href="/FAQs">FAQ</a>
+              <Link to="/About_Us" onClick={() => handleNavigation("About Us")}>
+                About Us
+              </Link>
             </li>
-            <li>Blog</li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <Link
+                to="/Terms&Conditions"
+                onClick={() => handleNavigation("Terms & Conditions")}
+              >
+                Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Privacy_Policy"
+                onClick={() => handleNavigation("Privacy Policy")}
+              >
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Refund_Policy"
+                onClick={() => handleNavigation("Refund Policy")}
+              >
+                Refund Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/FAQs" onClick={() => handleNavigation("FAQ")}>
+                FAQ
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" onClick={() => handleNavigation("Blog")}>
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                onClick={() => handleNavigation("Contact Us")}
+              >
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
