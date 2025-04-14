@@ -6,18 +6,27 @@ import DialogModal from "../../components/DialogModal/Index";
 import searchIcon from "../../assets/Images/searchIcon.png";
 import userFrame from "../../assets/Images/userFrame.png";
 import { IoMdHome } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const location = useLocation();
 
   const openLocationModal = () => {
     setIsModalOpen(true);
   };
 
-  const isTrue = location.pathname === "/";
+  const currentLink = useSelector((state) => state.pageType.currentLink);
+  console.log(currentLink);
+  // const isTrue = location.pathname === "/";
   return (
     <>
-      <div className={` ${!isTrue ? "faq_background" : "home_banner"}`}>
+      <div
+        className={` ${
+          currentLink !== "Home" ? "faq_background" : "home_banner"
+        }`}
+      >
         <nav className="header">
           <div className="content-row">
             <div className="logo">
@@ -41,7 +50,7 @@ const NavBar = () => {
           </div>
         </nav>
 
-        {isTrue ? (
+        {currentLink === "Home" ? (
           <section>
             <div className="header_content">
               <h2>
@@ -59,17 +68,25 @@ const NavBar = () => {
         ) : (
           <>
             <div className="header_content">
-              <h2>
-                Frequently Asked Questions
-                <span className="header_primary">(FAQs)</span>
-              </h2>
+              {currentLink === "FAQ" && (
+                <h2>
+                  Frequently Asked Questions
+                  <span className="header_primary">(FAQs)</span>
+                </h2>
+              )}
+              {currentLink === "Blog" && <h2>Blog</h2>}
+              {currentLink === "Contact Us" && <h2>{currentLink}</h2>}
+              {currentLink === "About Us" && <h2>{currentLink}</h2>}
+              {currentLink === "Terms & Conditions" && <h2>{currentLink}</h2>}
+              {currentLink === "Privacy Policy" && <h2>{currentLink}</h2>}
+              {currentLink === "Refund Policy" && <h2>{currentLink}</h2>}
 
               <div className="breadcrumb">
                 <a href="/">
                   <IoMdHome size={20} />
                   <span>Home</span>
                 </a>
-                <span>| FAQ</span>
+                <span>| {currentLink}</span>
               </div>
             </div>
           </>

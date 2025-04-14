@@ -13,16 +13,16 @@ function App() {
     libraries: ["places"],
   });
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/contact" element={<Contact isLoaded={isLoaded} />} />
-        <Route path="/FAQs" element={<FAQsList />} />
-        {/* <Route path="/about" element={<About />} />
+    // <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      {/* <Route path="/about" element={<About />} /> */}
+      <Route path="/contact" element={<Contact isLoaded={isLoaded} />} />
+      <Route path="/FAQs" element={<FAQsList />} />
+      {/* <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
-    </Router>
+    </Routes>
+    // </Router>
   );
 }
 
