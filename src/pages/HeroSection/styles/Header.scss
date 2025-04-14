@@ -45,6 +45,9 @@
     }
   
     .locate-button {
+      display: flex;
+  align-items: center;        
+  gap: 8px;  
       background-color: #ffffff;
        color: $primary-color;
        padding: 10px;
@@ -89,8 +92,19 @@
 
   //
   .home_banner {
-    background-color: $primary-bg; // From your variables file
+    // background-color: $primary-bg; // From your variables file
     padding-bottom: 1rem;
+    &.user {
+      background-color: $primary-bg; // #ECCAA3
+    }
+  
+    &.vendor {
+      background-color: $secondary-bg; // #E3FFD6
+    }
+  
+    &.marketer {
+      background-color: $third-bg; // #FFEBB8
+    }
   
     .header_content {
       display: flex;
@@ -238,13 +252,31 @@
   }
   
   .faq_background {
-    background: 
-    linear-gradient(rgba(228, 206, 150, 0.7), rgba(228, 206, 150, 0.7)),
-    url("../../../assets/Images/userBanner.png") center/cover no-repeat;
+    // background: 
+    // linear-gradient(rgba(228, 206, 150, 0.7), rgba(228, 206, 150, 0.7)),
+    // url("../../../assets/Images/userBanner.png") center/cover no-repeat;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding-bottom: 1rem;
+    &.user {
+      background: 
+        linear-gradient(rgba($primary-bg, 0.7), rgba($primary-bg, 0.7)),
+        url("../../../assets/Images/userBanner.png") center/cover no-repeat;
+    }
+  
+    &.vendor {
+      background: 
+        linear-gradient(rgba($secondary-bg, 0.7), rgba($secondary-bg, 0.7)),
+        url("../../../assets/Images/userBanner.png") center/cover no-repeat;
+    }
+  
+    &.marketer {
+      background: 
+        linear-gradient(rgba($third-bg, 0.7), rgba($third-bg, 0.7)),
+        url("../../../assets/Images/userBanner.png") center/cover no-repeat;
+    }
+  
     .header_content {
       display: flex;
       flex-direction: column;
