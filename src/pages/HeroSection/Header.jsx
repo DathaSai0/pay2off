@@ -9,8 +9,7 @@ import vendorFrame from "../../assets/Images/vendorFrame.png";
 import marketerFrame from "../../assets/Images/marketFrame.png";
 import { IoMdHome } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-
+import { LuLocateFixed } from "react-icons/lu";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const location = useLocation();
@@ -20,6 +19,10 @@ const NavBar = () => {
   };
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
+  const bannerTypeClass =
+    currentLink !== "Home"
+      ? `faq_background ${pageType}`
+      : `home_banner ${pageType}`;
   let headerText = {
     title: "Get Discounts & Offers",
     subtitle: "on Everything",
@@ -51,13 +54,14 @@ const NavBar = () => {
         endText: "on Everything",
       };
   }
-  // const isTrue = location.pathname === "/";
+  const isTrue = location.pathname === "/";
   return (
     <>
       <div
-        className={` ${
-          currentLink !== "Home" ? "faq_background" : "home_banner"
-        }`}
+        // className={` ${
+        //   currentLink !== "Home" ? "faq_background" : "home_banner"
+        // }`}
+        className={bannerTypeClass}
       >
         <nav className="header">
           <div className="content-row">
@@ -72,6 +76,7 @@ const NavBar = () => {
               </div>
 
               <button className="locate-button" onClick={handleLocateMe}>
+                <LuLocateFixed fontSize={20} />
                 Locate Me
               </button>
             </div>
@@ -82,7 +87,7 @@ const NavBar = () => {
           </div>
         </nav>
 
-        {currentLink === "Home" ? (
+        {isTrue ? (
           <section>
             <div className="header_content">
               <h2>
