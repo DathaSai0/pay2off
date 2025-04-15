@@ -12,7 +12,6 @@ import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
 import addImage from "../../assets/Images/addImage.png";
 import add2Image from "../../assets/Images/adv2Image.png";
 import catFruits from "../../assets/Images/catFruites.png";
-import CouponCard from "../../components/CuponCard/CouponCard";
 import { LuMessageCircleQuestion } from "react-icons/lu";
 import DialogModal from "../../components/DialogModal/Index";
 import RequestModal from "./components/RequestModal";
@@ -42,20 +41,6 @@ function Home() {
       {pageType?.type === "vendor" && <Vendors />}
 
       <br />
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "16px",
-          padding: "16px",
-        }}
-      >
-        <CouponCard />
-        <CouponCard />
-        <CouponCard />
-        <CouponCard />
-      </div>
 
       {pageType?.type === "user" && <Users />}
 

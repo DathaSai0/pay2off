@@ -1,6 +1,6 @@
 import React from "react";
 // import "./OfferModal.scss";
-import "./CouponCard.scss";
+import "./styles/style.scss";
 import DialogModal from "../DialogModal/Index";
 import AppStore from "../../assets/Images/AppStore.png";
 import { FaClock, FaStar } from "react-icons/fa";

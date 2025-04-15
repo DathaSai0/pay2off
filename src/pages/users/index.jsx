@@ -4,6 +4,7 @@ import "./styles/style.scss";
 import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
 import addImage from "../../assets/Images/addImage.png";
 import add2Image from "../../assets/Images/adv2Image.png";
+import CouponCard from "../../components/CuponCard/Index";
 
 function Users() {
   const images = [
@@ -30,6 +31,19 @@ function Users() {
   ];
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "2rem",
+          padding: "16px",
+        }}
+      >
+        {[1, 2, 3, 4, 5, 6, 6, 8]?.map((val, ind) => (
+          <CouponCard />
+        ))}
+      </div>
       <div className="category-carousel-wrapper">
         <ReusableCarousel
           style={{

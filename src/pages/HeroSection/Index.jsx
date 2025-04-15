@@ -11,6 +11,8 @@ import { IoMdHome } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { LuLocateFixed } from "react-icons/lu";
 import { setCurrentLink } from "../../Redux/pageTypeSlice";
+import HomePageSection from "./Components/HomePageSection";
+import DynamicSection from "./Components/DynamicSection";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const location = useLocation();
@@ -95,6 +97,15 @@ const NavBar = () => {
         </nav>
 
         {isTrue ? (
+          <HomePageSection
+            headerText={headerText}
+            searchIcon={searchIcon}
+            frameImage={frameImage}
+          />
+        ) : (
+          <DynamicSection currentLink={currentLink} />
+        )}
+        {/* {isTrue ? (
           <section>
             <div className="header_content">
               <h2>
@@ -122,18 +133,7 @@ const NavBar = () => {
                   <span className="header_primary">(FAQs)</span>
                 </h2>
               )}
-              {/* {currentLink === "Blog" && <h2>Blog</h2>}
-              {currentLink === "Contact Us" && <h2>{currentLink}</h2>}
-              {currentLink === "About Us" && <h2>{currentLink}</h2>}
-              {currentLink === "Terms & Conditions" && <h2>{currentLink}</h2>}
-              {currentLink === "Privacy Policy" && <h2>{currentLink}</h2>}
-              {currentLink === "Refund Policy" && <h2>{currentLink}</h2>} */}
-              {/* {currentLink === "FAQ" && (
-              <h2>
-                Frequently Asked Questions
-                <span className="header_primary">(FAQs)</span>
-              </h2>
-            )} */}
+
               {[
                 "Blog",
                 "Contact Us",
@@ -152,7 +152,7 @@ const NavBar = () => {
               </div>
             </div>
           </>
-        )}
+        )} */}
       </div>
       <DialogModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="location-modal">

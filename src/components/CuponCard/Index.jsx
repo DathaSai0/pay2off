@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaStar, FaClock, FaPercent } from "react-icons/fa";
-import "./CouponCard.scss";
+import "./styles/style.scss";
 import { RiDiscountPercentLine } from "react-icons/ri";
 import DialogModal from "../DialogModal/Index";
 import OfferModal from "./OfferModal";
@@ -16,8 +16,15 @@ const CouponCard = () => {
     <>
       <div className="discount-card" onClick={() => setIsModalOpen(true)}>
         <div className="card-top">
-          <div className="shop-name">
-            Amarachicken <span className="tag">Meat Shop</span>
+          {/* <div className="shop-name">
+            Amarachicken Hindustan Bidding and Furniture
+            <span className="tag">Meat Shop</span>
+          </div> */}
+          <div
+            className="shop-name"
+            data-name="Amarachicken Hindustan Bidding and Furniture"
+          >
+            <span className="tag">Meat Shop</span>
           </div>
           <div className="rating">
             <FaStar className="star-icon" />
