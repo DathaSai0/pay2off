@@ -5,8 +5,8 @@ import Contact from "./pages/contact";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { REACT_GOOGLE_MAP_API_KEY } from "./constants/constant";
 import AppLayout from "./pages/appLayout";
-import FAQsList from "./pages/FAQs/FAQ";
 import Blog from "./pages/blog";
+import FAQsList from "./pages/FAQs/Index";
 
 function App() {
   const { isLoaded } = useJsApiLoader({

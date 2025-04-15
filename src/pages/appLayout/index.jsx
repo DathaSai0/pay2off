@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../HeroSection/Header";
-import Footer from "../Footer/Footer";
 import ScrollToTop from "../../utilis/scrollTop";
+import NavBar from "../HeroSection/Index";
+import Footer from "../Footer/Index";
 
 function AppLayout({ children }) {
   return (

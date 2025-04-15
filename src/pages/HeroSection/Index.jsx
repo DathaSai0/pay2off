@@ -1,24 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../assets/Images/Pay2off Logo 1.png";
 import { handleLocateMe } from "../../utilis/location";
-import "./styles/Header.scss";
+import "./styles/style.scss";
 import DialogModal from "../../components/DialogModal/Index";
 import searchIcon from "../../assets/Images/searchIcon.png";
 import userFrame from "../../assets/Images/userFrame.png";
 import vendorFrame from "../../assets/Images/vendorFrame.png";
 import marketerFrame from "../../assets/Images/marketFrame.png";
 import { IoMdHome } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LuLocateFixed } from "react-icons/lu";
+import { setCurrentLink } from "../../Redux/pageTypeSlice";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const location = useLocation();
-
   const openLocationModal = () => {
     setIsModalOpen(true);
   };
+  const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
+  useEffect(() => {
+    const savedLink = localStorage.getItem("currentLink");
+    if (savedLink) {
+      dispatch(setCurrentLink(savedLink));
+    }
+  }, [dispatch]);
   const bannerTypeClass =
     currentLink !== "Home"
       ? `faq_background ${pageType}`
@@ -115,12 +122,26 @@ const NavBar = () => {
                   <span className="header_primary">(FAQs)</span>
                 </h2>
               )}
-              {currentLink === "Blog" && <h2>Blog</h2>}
+              {/* {currentLink === "Blog" && <h2>Blog</h2>}
               {currentLink === "Contact Us" && <h2>{currentLink}</h2>}
               {currentLink === "About Us" && <h2>{currentLink}</h2>}
               {currentLink === "Terms & Conditions" && <h2>{currentLink}</h2>}
               {currentLink === "Privacy Policy" && <h2>{currentLink}</h2>}
-              {currentLink === "Refund Policy" && <h2>{currentLink}</h2>}
+              {currentLink === "Refund Policy" && <h2>{currentLink}</h2>} */}
+              {/* {currentLink === "FAQ" && (
+              <h2>
+                Frequently Asked Questions
+                <span className="header_primary">(FAQs)</span>
+              </h2>
+            )} */}
+              {[
+                "Blog",
+                "Contact Us",
+                "About Us",
+                "Terms & Conditions",
+                "Privacy Policy",
+                "Refund Policy",
+              ].includes(currentLink) && <h2>{currentLink}</h2>}
 
               <div className="breadcrumb">
                 <a href="/">

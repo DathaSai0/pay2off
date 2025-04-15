@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   type: "user", // vendor , marketer
-  currentLink: "Home",
+  // currentLink: "Home",
+  currentLink:
+    typeof window !== "undefined"
+      ? localStorage.getItem("currentLink") || "Home"
+      : "Home",
 };
 export const pageTypeSlice = createSlice({
   name: "PAGE_TYPE",
@@ -12,7 +16,11 @@ export const pageTypeSlice = createSlice({
       state.type = action.payload;
     },
     setCurrentLink: (state, action) => {
+      // state.currentLink = action.payload;
       state.currentLink = action.payload;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("currentLink", action.payload);
+      }
     },
   },
 });
