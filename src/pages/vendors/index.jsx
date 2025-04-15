@@ -12,8 +12,9 @@ function Vendors() {
         Why should you partner with Pay2off
       </h1>
       <div className="vendor-card-container">
-        {benefits?.map((card) => (
+        {benefits?.map((card, i) => (
           <PartnerCard
+            key={i}
             image={defaultImage}
             title={card?.title}
             content={card?.description}

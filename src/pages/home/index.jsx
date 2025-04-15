@@ -1,8 +1,8 @@
 import React from "react";
-import ResusablePageCard from "../../components/ReusablePageCard";
+import ReusablePageCard from "../../components/ReusablePageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangePage } from "../../Redux/pageTypeSlice";
-import { homePageCradSection } from "./constants/constants";
+import { homePageCardSection } from "./constants/constants";
 import "./styles/style.scss";
 import HowItWorks from "../../components/howItWorks";
 import Vendors from "../vendors";
@@ -16,30 +16,9 @@ import CouponCard from "../../components/CuponCard/CouponCard";
 import { LuMessageCircleQuestion } from "react-icons/lu";
 import DialogModal from "../../components/DialogModal/Index";
 import RequestModal from "./components/RequestModal";
+import Users from "../users";
 
 function Home() {
-  const images = [
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-  ];
-  const images2 = [
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-  ];
   const pageType = useSelector((state) => state.pageType);
   const dispatch = useDispatch();
 
@@ -48,8 +27,8 @@ function Home() {
   return (
     <>
       <div className="home-page-user-vendor-marketer-conatiner">
-        {homePageCradSection?.map((card) => (
-          <ResusablePageCard
+        {homePageCardSection?.map((card) => (
+          <ReusablePageCard
             key={card?.type}
             title={card?.title}
             image={card?.image}
@@ -60,7 +39,8 @@ function Home() {
         ))}
       </div>
 
-      <Vendors />
+      {pageType?.type === "vendor" && <Vendors />}
+
       <br />
       <div
         style={{
@@ -77,36 +57,7 @@ function Home() {
         <CouponCard />
       </div>
 
-      <div className="category-carousel-wrapper">
-        <ReusableCarousel
-          style={{
-            height: "100%",
-            padding: "50px 50px",
-          }}
-        >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 22, 12, 13, 14, 14]?.map(
-            (data, index) => (
-              <div className="carousel-item-group" key={index}>
-                {[1, 2].map((_, i) => (
-                  <div className="category-card" key={i}>
-                    <div className="category-image-wrapper">
-                      <img
-                        src={catFruits}
-                        alt="category"
-                        className="category-image"
-                      />
-                    </div>
-                    <p className="category-label">Fruits</p>
-                  </div>
-                ))}
-              </div>
-            )
-          )}
-        </ReusableCarousel>
-      </div>
-
-      <InfiniteImageCarousel images={images2} type="big" />
-      <InfiniteImageCarousel images={images} />
+      {pageType?.type === "user" && <Users />}
 
       <ReusableCarousel>
         <TestimonialCard />

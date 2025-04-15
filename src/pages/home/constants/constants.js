@@ -2,7 +2,7 @@ import userCardImage from "../../../assets/Images/userCardImage.png";
 import vendorCardImage from "../../../assets/Images/vendorCardImage.png";
 import marketorCardImage from "../../../assets/Images/MarketerCardImage.png";
 
-export const homePageCradSection = [
+export const homePageCardSection = [
   {
     title: "User",
     content: "Lorem ipsum dolor sit amet, consectetur .",
