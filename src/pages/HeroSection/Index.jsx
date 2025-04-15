@@ -13,6 +13,7 @@ import { LuLocateFixed } from "react-icons/lu";
 import { setCurrentLink } from "../../Redux/pageTypeSlice";
 import HomePageSection from "./Components/HomePageSection";
 import DynamicSection from "./Components/DynamicSection";
+import { MdOutlineLocationOn } from "react-icons/md";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const location = useLocation();
@@ -81,7 +82,8 @@ const NavBar = () => {
 
             <div className="location-wrapper">
               <div className="location_desk" onClick={openLocationModal}>
-                Coimbatore, Tamil Nadu 641105, India
+                <MdOutlineLocationOn fontSize={18} /> Coimbatore, Tamil Nadu
+                641105, India
               </div>
 
               <button className="locate-button" onClick={handleLocateMe}>
