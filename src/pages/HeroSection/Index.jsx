@@ -98,7 +98,7 @@ const NavBar = () => {
           </div>
         </nav>
 
-        {isTrue ? (
+        {currentLink === "Home" ? (
           <HomePageSection
             headerText={headerText}
             searchIcon={searchIcon}
