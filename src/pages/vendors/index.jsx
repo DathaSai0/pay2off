@@ -1,5 +1,5 @@
 import React from "react";
-import { benefits } from "./constants/constant";
+import { benefits, vendorsHowItWorkList } from "./constants/constant";
 import defaultImage from "../../assets/Images/exampleImage.png";
 import PartnerCard from "../../components/partner";
 import "./styles/style.scss";
@@ -25,7 +25,15 @@ function Vendors() {
       <h1 className="how-it-work-text">How it works?</h1>
 
       <div className="vendor-how-it-work-container">
-        <HowItWorks />
+        <HowItWorks
+          title={
+            "Dear Valued Vendor, Discover the Magic of Pay2off: Here’s How It Works!"
+          }
+          subTitle={
+            " Ready to boost your business and open doors to new opportunities? Collaborating with Pay2off, the top shopping app connecting customer with local discounts and coupons, can help elevate your sales, visibility, and customer relationships. Find new customers, increase your sales, and strengthen your ties within the local community."
+          }
+          contentList={vendorsHowItWorkList}
+        />
       </div>
     </div>
   );

@@ -4,19 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleChangePage } from "../../Redux/pageTypeSlice";
 import { homePageCardSection } from "./constants/constants";
 import "./styles/style.scss";
-import HowItWorks from "../../components/howItWorks";
 import Vendors from "../vendors";
 import TestimonialCard from "./components/TestimonilaCard";
 import ReusableCarousel from "../../components/ReusableCarousel";
-import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
-import addImage from "../../assets/Images/addImage.png";
-import add2Image from "../../assets/Images/adv2Image.png";
-import catFruits from "../../assets/Images/catFruites.png";
 import CouponCard from "../../components/CuponCard/CouponCard";
-import { LuMessageCircleQuestion } from "react-icons/lu";
-import DialogModal from "../../components/DialogModal/Index";
 import RequestModal from "./components/RequestModal";
 import Users from "../users";
+import Marketers from "../marketers";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
@@ -40,6 +34,7 @@ function Home() {
       </div>
 
       {pageType?.type === "vendor" && <Vendors />}
+      {pageType?.type === "marketer" && <Marketers />}
 
       <br />
       <div

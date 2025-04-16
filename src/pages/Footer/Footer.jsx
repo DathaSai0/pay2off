@@ -33,13 +33,13 @@ const Footer = () => {
           <h4>Company</h4>
           <ul>
             <li>
-              <Link to="/About Us" onClick={() => handleNavigation("About Us")}>
+              <Link to="/about-us" onClick={() => handleNavigation("About Us")}>
                 About Us
               </Link>
             </li>
             <li>
               <Link
-                to="/Terms & Conditions"
+                to="/terms-and-conditions"
                 onClick={() => handleNavigation("Terms & Conditions")}
               >
                 Terms & Conditions
