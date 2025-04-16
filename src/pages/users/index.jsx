@@ -5,6 +5,37 @@ import InfiniteImageCarousel from "../../components/ReusableImageCarousel";
 import addImage from "../../assets/Images/addImage.png";
 import add2Image from "../../assets/Images/adv2Image.png";
 import CouponCard from "../../components/CuponCard/Index";
+import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
+
+const businesses = [
+  {
+    id: 1,
+    name: "aliya telecom",
+    address: "Bazaar Street, Bengaluru Urban",
+    rating: 0,
+    distance: "12.23 kms",
+    count: 1,
+    isFavorite: false,
+  },
+  {
+    id: 2,
+    name: "Global Electronics",
+    address: "MG Road, Bengaluru Urban MG Road, Bengaluru Urban",
+    rating: 4.2,
+    distance: "5.7 kms",
+    count: 3,
+    isFavorite: true,
+  },
+  {
+    id: 3,
+    name: "City Mobile Shop",
+    address: "Commercial Street, Bengaluru",
+    rating: 3.8,
+    distance: "8.1 kms",
+    count: 2,
+    isFavorite: false,
+  },
+];
 
 function Users() {
   const images = [
@@ -44,6 +75,17 @@ function Users() {
           <CouponCard />
         ))}
       </div>
+      {businesses.map((business) => (
+        <CategoryDetailsCard
+          key={business.id}
+          name={business.name}
+          address={business.address}
+          rating={business.rating}
+          distance={business.distance}
+          count={business.count}
+          isFavorite={business.isFavorite}
+        />
+      ))}
       <div className="category-carousel-wrapper">
         <ReusableCarousel
           style={{
