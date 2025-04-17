@@ -14,6 +14,7 @@ const CategoryDetailsCard = ({
   distance,
   count,
   isFavorite = false,
+  showContent,
 }) => {
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -22,11 +23,17 @@ const CategoryDetailsCard = ({
   };
 
   return (
-    <div className="business-card">
+    <div
+      className="business-card"
+      style={{ width: showContent && "50%", maxWidth: showContent && "60%" }}
+    >
       <div className="business-card__logo-container">
-        <div className="business-card__crown">
-          <FaCrown className="crown-icon" />
-        </div>
+        {!showContent && (
+          <div className="business-card__crown">
+            <FaCrown className="crown-icon" />
+          </div>
+        )}
+
         <div className="business-card__logo">
           {logo && <img src={logo} alt={`${name} logo`} />}
         </div>
@@ -35,7 +42,9 @@ const CategoryDetailsCard = ({
       <div className="business-card__info">
         {name && <h3 className="business-card__name">{name}</h3>}
         {address && <p className="business-card__address">{address}</p>}
-        {false && <p className="business_timing">Open's Daily - 8am to 10pm</p>}
+        {showContent && (
+          <p className="business_timing">Open's Daily - 8am to 10pm</p>
+        )}
         <div className="business-card__details">
           <div className="business-card__detail">
             <FaStar className="icon star" />
