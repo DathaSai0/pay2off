@@ -1,4 +1,4 @@
-import "./Footer.scss";
+import "./styles/style.scss";
 import Logo from "../../assets/Images/Pay2off Logo 1.png";
 import AppStore from "../../assets/Images/AppStore.png";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";

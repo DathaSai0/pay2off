@@ -7,7 +7,6 @@ import "./styles/style.scss";
 import Vendors from "../vendors";
 import TestimonialCard from "./components/TestimonilaCard";
 import ReusableCarousel from "../../components/ReusableCarousel";
-import CouponCard from "../../components/CuponCard/CouponCard";
 import RequestModal from "./components/RequestModal";
 import Users from "../users";
 import Marketers from "../marketers";
@@ -37,20 +36,6 @@ function Home() {
       {pageType?.type === "marketer" && <Marketers />}
 
       <br />
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "16px",
-          padding: "16px",
-        }}
-      >
-        <CouponCard />
-        <CouponCard />
-        <CouponCard />
-        <CouponCard />
-      </div>
 
       {pageType?.type === "user" && <Users />}
 

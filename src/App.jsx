@@ -4,7 +4,7 @@ import Home from "./pages/home";
 import Contact from "./pages/contact";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { REACT_GOOGLE_MAP_API_KEY } from "./constants/constant";
-import FAQsList from "./pages/FAQs/FAQ";
+import FAQsList from "./pages/FAQs";
 import Blog from "./pages/blog";
 import AboutUs from "./pages/aboutUs";
 import TermsAndConditions from "./pages/termsAndConditions";
@@ -17,14 +17,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-      <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} />
-      <Route path="/FAQ" element={<FAQsList />} />
-      <Route path="/Blog" element={<Blog />} />
-
-      {/* <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} /> */}
+      {/* <Route path="/about-us" element={<AboutUs />} /> */}
+      {/* <Route path="/terms-and-conditions" element={<TermsAndConditions />} /> */}
+      {/* <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} /> */}
+      {/* <Route path="/FAQ" element={<FAQsList />} /> */}
+      {/* <Route path="/Blog" element={<Blog />} /> */}
     </Routes>
   );
 }

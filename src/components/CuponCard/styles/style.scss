@@ -1,30 +1,46 @@
-@use "../../variables.scss" as *;
+@use "../../../variables.scss" as *;
 .discount-card {
     background: #fff;
     border: 1px solid #C6C6C6;
     border-radius: 10px;
     padding: 15px;
     width: 100%;
-  max-width: 500px;
+  max-width: 300px;
     // width: 500px;
     min-height: 150px;
     // height: auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
     font-family: "Arial", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
   
     .card-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap:1.4rem;
   
       .shop-name {
+        display: flex;
+        align-items: center;
         font-size: 16px;
         font-weight: 600;
-  
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      
+        /* Inner text container to truncate */
+        &::before {
+          content: attr(data-name);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1;
+        }
+      
         .tag {
           background: #ff5a1f;
           color: white;
@@ -34,6 +50,7 @@
           margin-left: 8px;
         }
       }
+      
   
       .rating {
         display: flex;

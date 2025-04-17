@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./FAQ.scss";
+import "./styles/style.scss";
 
 const faqs = [
   {
