@@ -57,6 +57,7 @@
        border-radius: 20px;
        border:1px solid $primary-color;
        font-weight: 600;
+       cursor: pointer;
     }
   
     .location_mobile {
@@ -368,6 +369,12 @@
         width: 90%;
         height: 10vh;
         object-fit: fill;
+      }
+    }
+    .dynamic_banner {
+      img {
+        max-width: 100%;
+        height: 25vh;
       }
     }
   }
