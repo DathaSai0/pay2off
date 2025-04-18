@@ -5,9 +5,12 @@ import CustomTextAreaField from "../../../components/CustomTextFiled";
 import PrimaryButton from "../../../components/PrimaryButton/Index";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentLink } from "../../../Redux/pageTypeSlice";
 
 function ContactDetails() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className="contact-details-wrapper">
       <CustomInputField
@@ -30,6 +33,7 @@ function ContactDetails() {
           variant="outlined"
           onClick={() => {
             navigate("/");
+            dispatch(setCurrentLink("Home"));
           }}
         >
           Cancel

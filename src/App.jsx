@@ -8,6 +8,8 @@ import FAQsList from "./pages/FAQs";
 import Blog from "./pages/blog";
 import AboutUs from "./pages/aboutUs";
 import TermsAndConditions from "./pages/termsAndConditions";
+import PrivacyPolicy from "./pages/privacyPolicy";
+import RefundPolicy from "./pages/refundPolicy";
 
 function App() {
   const { isLoaded } = useJsApiLoader({
@@ -17,11 +19,13 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* <Route path="/about-us" element={<AboutUs />} /> */}
-      {/* <Route path="/terms-and-conditions" element={<TermsAndConditions />} /> */}
-      {/* <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} /> */}
-      {/* <Route path="/FAQ" element={<FAQsList />} /> */}
-      {/* <Route path="/Blog" element={<Blog />} /> */}
+      <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/refund-policy" element={<RefundPolicy />} />
+      <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} />
+      <Route path="/FAQ" element={<FAQsList />} />
+      <Route path="/Blog" element={<Blog />} />
     </Routes>
   );
 }

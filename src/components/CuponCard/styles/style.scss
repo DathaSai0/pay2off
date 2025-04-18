@@ -179,15 +179,30 @@
   }
   .close_Icon{
     position: absolute;
-    top: 21%;
-    left:61%;
+    top: -20px;
+    left: 350px;
     color: #f15700;
     background-color: #fff;
     cursor: pointer;
-    padding: 4px;
+    // padding: 4px;
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     z-index: 10;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 320px){
+      left: 280px;
+      top: -16px;
+    } 
+    @media (min-width: 321px) and (max-width: 376px) {
+      left: 330px;
+      top: -16px;
+    }
+
+  
   }
   
   .modal.top {
@@ -347,28 +362,28 @@
   }
 
  /* Small phones (up to 420px) */
-@media (max-width: 420px) {
-  .close_Icon {
-    top: 15%;
-    left: 87%;
-  }
-}
+// @media (max-width: 420px) {
+//   .close_Icon {
+//     top: 15%;
+//     left: 87%;
+//   }
+// }
 
-/* Phones between 421px and 568px */
-@media (min-width: 421px) and (max-width: 568px) {
-  .close_Icon {
-    top: 16%;
-    left: 80%;
-  }
-}
+// /* Phones between 421px and 568px */
+// @media (min-width: 421px) and (max-width: 568px) {
+//   .close_Icon {
+//     top: 16%;
+//     left: 80%;
+//   }
+// }
 
-/* Tablets between 569px and 768px */
-@media (min-width: 569px) and (max-width: 768px) {
-  .close_Icon {
-    top: 16%;
-    left: 67%;
-  }
-}
+// /* Tablets between 569px and 768px */
+// @media (min-width: 569px) and (max-width: 768px) {
+//   .close_Icon {
+//     top: 16%;
+//     left: 67%;
+//   }
+// }
 
   
   

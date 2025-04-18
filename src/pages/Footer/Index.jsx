@@ -47,7 +47,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/Privacy Policy"
+                to="/privacy-policy"
                 onClick={() => handleNavigation("Privacy Policy")}
               >
                 Privacy Policy
@@ -55,7 +55,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/Refund Policy"
+                to="/refund-policy"
                 onClick={() => handleNavigation("Refund Policy")}
               >
                 Refund Policy

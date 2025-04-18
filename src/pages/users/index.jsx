@@ -115,7 +115,7 @@ function Users() {
         ))}
       </div>
 
-      {/* <InfiniteImageCarousel images={images2} type="big" /> */}
+      <InfiniteImageCarousel images={images2} type="big" />
 
       <div
         style={{
@@ -131,7 +131,7 @@ function Users() {
         ))}
       </div>
 
-      {/* <InfiniteImageCarousel images={images} /> */}
+      <InfiniteImageCarousel images={images} />
     </>
   );
 }

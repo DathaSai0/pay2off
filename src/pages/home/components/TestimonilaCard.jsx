@@ -1,6 +1,6 @@
 import React from "react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import defaultImage from "../../../assets/Images/avatar_default.jpg";
+import defaultImage from "../../../assets/Images/testimonialImage.png";
 import testimonialText from "../../../assets/Images/testimonialCard.png";
 // import "./TestimonialCard.scss";
 
