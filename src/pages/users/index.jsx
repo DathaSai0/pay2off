@@ -73,7 +73,6 @@ function Users() {
           )}
         </ReusableCarousel>
       </div>
-
       <InfiniteImageCarousel images={images2} type="big" />
       <InfiniteImageCarousel images={images} />
     </>

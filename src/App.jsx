@@ -8,6 +8,7 @@ import AppLayout from "./pages/appLayout";
 import Blog from "./pages/blog";
 import FAQsList from "./pages/FAQs/Index";
 import StoreDetails from "./pages/StoreDetails/Index";
+import CategorySearch from "./pages/CategorySearch/Index";
 
 function App() {
   const { isLoaded } = useJsApiLoader({
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Blog" element={<Blog />} />
       </Route>
       <Route path="/storeDetails" element={<StoreDetails />} />
+      <Route path="/categorySearch" element={<CategorySearch />} />
 
       {/* <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} /> */}

@@ -1,8 +1,14 @@
 // components/TrueHeaderSection.jsx
 import React from "react";
 import "../styles/style.scss";
+import { useNavigate } from "react-router-dom";
 
 const HomePageSection = ({ headerText, searchIcon, frameImage }) => {
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    navigate("/categorySearch");
+  };
   return (
     <section className="true-header-section">
       <div className="header_content">
@@ -11,7 +17,7 @@ const HomePageSection = ({ headerText, searchIcon, frameImage }) => {
           <span className="header_primary"> {headerText?.subtitle}</span>{" "}
           {headerText?.endText}
         </h2>
-        <div>
+        <div onClick={handleImageClick} style={{ cursor: "pointer" }}>
           <img src={searchIcon} alt="Search Icon" />
         </div>
       </div>
