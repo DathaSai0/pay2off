@@ -5,8 +5,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles/style.scss";
+import { useNavigate } from "react-router-dom";
 
 const InfiniteImageCarousel = ({ images, type }) => {
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    navigate("/storeDetails");
+  };
+
   return (
     <div className="carousel-container">
       <Swiper
@@ -41,7 +48,8 @@ const InfiniteImageCarousel = ({ images, type }) => {
           <SwiperSlide
             key={i}
             className="carousel-slide"
-            onClick={() => alert(item)}
+            // onClick={() => alert(item)}
+            onClick={handleImageClick}
           >
             <img
               src={item}

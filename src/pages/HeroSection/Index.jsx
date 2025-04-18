@@ -20,6 +20,7 @@ const NavBar = () => {
   const openLocationModal = () => {
     setIsModalOpen(true);
   };
+
   const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);

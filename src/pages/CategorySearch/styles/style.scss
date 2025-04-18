@@ -1,0 +1,56 @@
+
+.store-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+  
+    .back-arrow {
+      position: absolute;
+      left: 16px;
+      cursor: pointer;
+      color: #f36f21; // Orange arrow color
+  
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+}
+.location-search {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+
+    .search-icon {
+      margin-right: 8px;
+      color: #555;
+    }
+    input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
+        background: transparent;
+      }
+}
+
+.search-wrapper {
+    display: flex;
+    justify-content: space-around; 
+    padding: 24px; 
+  
+    // Optional: to center vertically if needed
+    // align-items: center;
+    // min-height: 80vh;
+  }
+  .live_title{
+    margin-left:26%;
+  }
