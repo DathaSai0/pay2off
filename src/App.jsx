@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import Contact from "./pages/contact";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { REACT_GOOGLE_MAP_API_KEY } from "./constants/constant";
+import AppLayout from "./pages/appLayout";
 
 import Blog from "./pages/blog";
 import AboutUs from "./pages/aboutUs";
@@ -22,14 +23,16 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/refund-policy" element={<RefundPolicy />} />
-      <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} />
-      <Route path="/FAQ" element={<FAQsList />} />
-      <Route path="/Blog" element={<Blog />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/Contact Us" element={<Contact isLoaded={isLoaded} />} />
+        <Route path="/FAQ" element={<FAQsList />} />
+        <Route path="/Blog" element={<Blog />} />
+      </Route>
       <Route path="/storeDetails" element={<StoreDetails />} />
       <Route path="/categorySearch" element={<CategorySearch />} />
     </Routes>
