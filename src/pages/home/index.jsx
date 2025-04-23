@@ -10,12 +10,15 @@ import ReusableCarousel from "../../components/ReusableCarousel";
 import RequestModal from "./components/RequestModal";
 import Users from "../users";
 import Marketers from "../marketers";
+import useApiCalls from "./hooks/useApiCalls";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
   const dispatch = useDispatch();
 
   console.log(pageType, "pageType");
+
+  const { getAddressList } = useApiCalls();
 
   return (
     <>
