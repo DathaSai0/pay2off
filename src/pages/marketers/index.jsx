@@ -15,7 +15,7 @@ function Marketers() {
         {marketerBenefits?.map((card, i) => (
           <PartnerCard
             key={i}
-            image={defaultImage}
+            image={card?.image || defaultImage}
             title={card?.title}
             content={card?.description}
           />

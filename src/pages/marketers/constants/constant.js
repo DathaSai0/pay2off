@@ -1,23 +1,32 @@
+import img1 from "../../../assets/Images/marketing_opportunities.jpg";
+import img2 from "../../../assets/Images/environment_growth.jpg";
+import img3 from "../../../assets/Images/edge_technology.jpg";
+import img4 from "../../../assets/Images/local_business.jpg";
+
 export const marketerBenefits = [
   {
     title: "Dynamic Marketing Opportunities",
     description:
       "At Pay2off, you'll spearhead innovative marketing strategies, leveraging our platform to reach a diverse audience, and drive impactful promotional campaigns.",
+    image: img1,
   },
   {
     title: "Collaborative Environment for Growth",
     description:
       "Join a vibrant team committed to your professional development. At Pay2off, you'll work alongside industry experts, exchanging ideas and contributing meaningfully.",
+    image: img2,
   },
   {
     title: "Cutting-Edge Technology & Insights",
     description:
       "Access cutting-edge tools and analytics, empowering you to craft data-driven marketing initiatives. Gain valuable insights into consumer behavior for smarter strategies.",
+    image: img3,
   },
   {
     title: "Impactful Contributions to Local Businesses",
     description:
       "As a Marketing Executive at Pay2off, you'll play a pivotal role in elevating local businesses, amplifying their visibility, and fostering stronger community connections.",
+    image: img4,
   },
 ];
 

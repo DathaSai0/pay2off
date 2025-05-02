@@ -1,28 +1,34 @@
+import img1 from "../../../assets/Images/more_sale.jpg";
+import img2 from "../../../assets/Images/engage_with_customers.jpg";
+import img3 from "../../../assets/Images/useful_insights.jpg";
+import img4 from "../../../assets/Images/afford_promotion.jpg";
+
 export const benefits = [
   {
     title: "More Customers, More Sales",
     description:
       "Joining Pay2off means more people visiting your store, increasing foot traffic, and making your business more visible in the local area.",
+    image: img1,
   },
   {
     title: "Engage Better with Customers",
     description:
       "Offer exclusive discounts via Pay2off to connect with a wider audience, build stronger relationships, and create loyal, returning customers.",
+    image: img2,
   },
   {
     title: "Useful Insights, Better Decisions",
     description:
       "Access valuable data on customer behavior to make smart, informed choices in tailoring your offerings for maximum impact.",
+    image: img3,
   },
   {
     title: "Affordable Promotion",
     description:
       "Market your promotions directly to interested customers without spending a fortune. Pay2off offers cost-effective advertising, ensuring better returns on your investment.",
+    image: img4,
   },
 ];
-
-
-
 
 export const vendorsHowItWorkList = [
   {
