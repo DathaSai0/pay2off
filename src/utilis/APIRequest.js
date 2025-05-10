@@ -7,7 +7,6 @@ const APIRequest = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        authToken: localStorage.getItem("token"),
       },
       credentials: "include",
     };
@@ -21,11 +20,15 @@ const APIRequest = {
         return response.json();
       })
       .then((data) => {
+        console.log(data, "datha");
         return this.returnResponse(data, url, config); // Handle the response
       })
       .catch(() => {
         return { returncode: 0, errors: [{ errormsg: "Timeout Error." }] };
       });
+  },
+  returnResponse: async function (response, url, config) {
+    return Promise.resolve(response);
   },
 };
 

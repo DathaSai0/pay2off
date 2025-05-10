@@ -4,8 +4,8 @@ import APIRequest from "../../../utilis/APIRequest";
 
 function useApiCalls() {
   useEffect(() => {
-    getAddressList("");
-    getTestimonials("");
+    // getAddressList("");
+    getTestimonials();
   }, []);
   const getAddressList = async (keyword = "") => {
     const response = await APIRequest.request(
@@ -13,8 +13,6 @@ function useApiCalls() {
       `${ConfigAPIURL.largeAdvertisement}`,
       ""
     );
-
-    console.log(response, "response");
   };
 
   const getTestimonials = async () => {
