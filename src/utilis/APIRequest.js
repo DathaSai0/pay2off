@@ -2,11 +2,14 @@ import ConfigAPIURL from "../config/ConfigAPIURL";
 
 const APIRequest = {
   request: function (method, url, body) {
+    const locationData = JSON.parse(localStorage.getItem("userLocation")) || {};
     const config = {
       method: method,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Latitude: locationData.latitude || "",
+        Longitude: locationData.longitude || "",
       },
       credentials: "include",
     };

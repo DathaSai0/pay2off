@@ -14,12 +14,19 @@ import { setCurrentLink } from "../../Redux/pageTypeSlice";
 import HomePageSection from "./Components/HomePageSection";
 import DynamicSection from "./Components/DynamicSection";
 import { MdOutlineLocationOn } from "react-icons/md";
+import useServices from "./hooks/useServices";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const location = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
   const openLocationModal = () => {
     setIsModalOpen(true);
   };
+  const [locationData, setLocationData] = useState(
+    JSON.parse(localStorage.getItem("userLocation"))
+  );
+  // const locationData = JSON.parse(localStorage.getItem("userLocation"));
+  console.log("Loc", locationData);
+  const services = useServices();
 
   const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
@@ -66,6 +73,22 @@ const NavBar = () => {
       };
   }
   const isTrue = location.pathname === "/";
+
+  const handleLocationSelect = (selectedLocation) => {
+    const updatedLocation = {
+      locationData: selectedLocation.name,
+      locationAddress: selectedLocation.formatted_address,
+      latitude: selectedLocation.geometry?.location?.lat,
+      longitude: selectedLocation.geometry?.location?.lng,
+    };
+
+    localStorage.setItem("userLocation", JSON.stringify(updatedLocation));
+    setLocationData(updatedLocation);
+
+    // Close the modal after selecting the location
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div
@@ -83,11 +106,14 @@ const NavBar = () => {
 
             <div className="location-wrapper">
               <div className="location_desk" onClick={openLocationModal}>
-                <MdOutlineLocationOn fontSize={18} /> Coimbatore, Tamil Nadu
-                641105, India
+                <MdOutlineLocationOn fontSize={18} />
+                {locationData?.locationData}
               </div>
 
-              <button className="locate-button" onClick={handleLocateMe}>
+              <button
+                className="locate-button"
+                onClick={() => handleLocateMe(setLocationData)}
+              >
                 <LuLocateFixed fontSize={20} />
                 Locate Me
               </button>
@@ -108,56 +134,12 @@ const NavBar = () => {
         ) : (
           <DynamicSection currentLink={currentLink} />
         )}
-        {/* {isTrue ? (
-          <section>
-            <div className="header_content">
-              <h2>
-                {headerText?.title}
-                <span className="header_primary">
-                  {" "}
-                  {headerText?.subtitle}
-                </span>{" "}
-                {headerText?.endText}
-              </h2>
-              <div>
-                <img src={searchIcon} />
-              </div>
-            </div>
-            <div className="dynamic_banner">
-              <img src={frameImage} />
-            </div>
-          </section>
-        ) : (
-          <>
-            <div className="header_content">
-              {currentLink === "FAQ" && (
-                <h2>
-                  Frequently Asked Questions
-                  <span className="header_primary">(FAQs)</span>
-                </h2>
-              )}
-
-              {[
-                "Blog",
-                "Contact Us",
-                "About Us",
-                "Terms & Conditions",
-                "Privacy Policy",
-                "Refund Policy",
-              ].includes(currentLink) && <h2>{currentLink}</h2>}
-
-              <div className="breadcrumb">
-                <a href="/">
-                  <IoMdHome size={20} />
-                  <span>Home</span>
-                </a>
-                <span>| {currentLink}</span>
-              </div>
-            </div>
-          </>
-        )} */}
       </div>
-      <DialogModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <DialogModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        style={{ width: "600px", height: "80%" }}
+      >
         <div className="location-modal">
           <div className="location-title">Setup your Location</div>
 
@@ -166,15 +148,41 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="Area Codes, Cities, or Country wide"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyUp={() => services?.searchLocation(searchQuery)}
             />
           </div>
 
-          <div className="use-current-location" onClick={handleLocateMe}>
+          <div
+            className="use-current-location"
+            onClick={() => handleLocateMe(setLocationData)}
+          >
             <span className="location-icon">📍</span>
             <div>
               <p className="use-text">Use Current Location</p>
               <p className="desc-text">Access Location to Services Better</p>
             </div>
+          </div>
+          <div className="location-list">
+            {services?.location.map((location, index) => (
+              <div
+                key={index}
+                className="location-item"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleLocationSelect(location)}
+              >
+                <MdOutlineLocationOn className="location-icon" />
+                <div className="location-info">
+                  <div className="location-title-text">
+                    {location.name || "Unknown Name"}
+                  </div>
+                  <div className="location-address">
+                    {location.formatted_address}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </DialogModal>

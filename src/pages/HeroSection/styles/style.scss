@@ -137,7 +137,7 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
   
     .location-title {
       font-size: 20px;
@@ -386,7 +386,61 @@
       }
     }
   }
+  
 }
+.location-list {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 8px; // for scrollbar
+}
+
+.location-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.location-icon {
+  color: #F15700;
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-title-text {
+  font-weight: 600;
+  color: #222;
+  font-size: 15px;
+}
+
+.location-address {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 440px; // adjust as needed
+}
+@media (max-width: 700px) {
+  .location-icon {
+    display: block;  // Ensure it's displayed
+    font-size: 18px;  // Adjust size if needed
+    color: #F15700;   // Make sure it's still visible in mobile
+  }
+  
+  // You can also adjust other related styles if needed.
+}
+
 
   
   

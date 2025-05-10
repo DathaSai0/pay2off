@@ -1,11 +1,33 @@
-export const handleLocateMe = () => {
+import ConfigAPIURL from "../config/ConfigAPIURL";
+import APIRequest from "./APIRequest";
+
+export const handleLocateMe = async (setLocationData) => {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log("Latitude:", position.coords.latitude);
-        console.log("Longitude:", position.coords.longitude);
+      async (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const latlng = `${lat},${lng}`;
 
-        // You can use reverse geocoding here to convert lat/lng to city name, etc.
+        try {
+          const response = await APIRequest.request(
+            "GET",
+            `${ConfigAPIURL.locationSearch}?latlng=${latlng}`,
+            ""
+          );
+          const data = await response?.results[0];
+
+          const updatedLocation = {
+            latitude: data?.navigation_points?.[0]?.location?.latitude,
+            longitude: data?.navigation_points?.[0]?.location?.longitude,
+            locationData: data?.formatted_address,
+          };
+
+          localStorage.setItem("userLocation", JSON.stringify(updatedLocation));
+          setLocationData?.(updatedLocation); // update state in component
+        } catch (error) {
+          console.error("Error calling location API:", error);
+        }
       },
       (error) => {
         console.error("Error getting location:", error.message);
