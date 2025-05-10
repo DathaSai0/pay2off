@@ -1,10 +1,13 @@
 class ConfigAPIURL {
   //  base URL
-  static baseUrl = "https://core.pay2off.com";
+  static baseUrl = "http://192.168.1.239:3040";
 
   // static pruchaseChallenge = this.baseUrl + "/user/sub/purchase"; // POST
-  static largeAdvertisement = this.baseUrl + "/core/dashboard/large-ad"; // GET
+  static largeAdvertisement = this.baseUrl + "/core/dashboard/categories"; // GET
   static locationSearch = this.baseUrl + "/core/location";
+
+  // testimonials
+  static testimonials = this.baseUrl + "/core/dashboard/get";
 }
 
 export default ConfigAPIURL;

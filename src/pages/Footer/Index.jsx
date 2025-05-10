@@ -161,8 +161,8 @@ const Footer = () => {
         <span className="span_line">|</span>
         <p>
           Powered by{" "}
-          <a href="https://solutionchamps.com" target="_blank" rel="noreferrer">
-            SolutionChamps Technologies Pvt. Ltd.
+          <a href="https://quatisys.com/" target="_blank" rel="noreferrer">
+            Quatisys Software Technology
           </a>
         </p>
       </div>
