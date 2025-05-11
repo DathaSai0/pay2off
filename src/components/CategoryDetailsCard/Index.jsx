@@ -15,6 +15,8 @@ const CategoryDetailsCard = ({
   isFavorite = false,
   showContent,
   id,
+  style,
+  ref,
 }) => {
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -30,6 +32,7 @@ const CategoryDetailsCard = ({
         maxWidth: showContent && "100%",
         padding: showContent && "1rem",
       }}
+      ref={ref || null}
     >
       <div className="business-card__logo-container">
         {!showContent && (

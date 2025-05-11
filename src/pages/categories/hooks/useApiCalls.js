@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import APIRequest from "../../../utilis/APIRequest";
 import ConfigAPIURL from "../../../config/ConfigAPIURL";
 
-function useApiCalls({ categoryId }) {
+function useApiCalls({ categoryId, page }) {
   const [shopsList, setShopsList] = useState({
     data: [],
     isLoading: true,
   });
+  const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
-    getShopsByCategory(0);
-  }, []);
+    if (!hasMore) return;
+    getShopsByCategory(page);
+  }, [page]);
   const getShopsByCategory = async (pageNo) => {
     try {
       setShopsList((p) => ({
@@ -35,6 +37,10 @@ function useApiCalls({ categoryId }) {
                   ...(response?.results?.data?.shopLists || []),
                 ],
         }));
+
+        if (response?.results?.data?.shopLists?.length <= 0) {
+          setHasMore(false);
+        }
       } else {
         setShopsList((p) => ({
           ...p,
