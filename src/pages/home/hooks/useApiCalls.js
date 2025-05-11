@@ -7,6 +7,7 @@ function useApiCalls() {
     data: [],
     isLoading: false,
   });
+  const [requestType, setRequestType] = useState([]);
   useEffect(() => {
     getTestimonials();
   }, []);
@@ -45,8 +46,28 @@ function useApiCalls() {
       }));
     }
   };
+
+  const getRequestType = async () => {
+    try {
+      const response = await APIRequest.request(
+        "GET",
+        ConfigAPIURL.supportRequest,
+        ""
+      );
+
+      console.log(response, "response");
+
+      if (response?.error === false) {
+        setRequestType(response?.results?.data || []);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     testimonials,
+    getRequestType,
+    requestType,
   };
 }
 

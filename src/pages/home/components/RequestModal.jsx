@@ -1,10 +1,12 @@
 import { useState } from "react";
 import DialogModal from "../../../components/DialogModal/Index";
 import { LuMessageCircleQuestion } from "react-icons/lu";
+import { FaSearch } from "react-icons/fa";
+import useApiCalls from "../hooks/useApiCalls";
 
 const RequestModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isRequest, setIsRequest] = useState(false);
   const openRequestModal = () => {
     setIsModalOpen(true);
   };
@@ -13,12 +15,13 @@ const RequestModal = () => {
     requestType: "",
     comment: "",
   });
-
+  const services = useApiCalls();
   const handleClose = () => {
     setFormData({ phone: "", requestType: "", comment: "" });
     setErrors({});
     setIsModalOpen(false);
   };
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -93,12 +96,22 @@ const RequestModal = () => {
           <label htmlFor="requestType">
             Choose Your Request<span style={{ color: "red" }}>*</span>
           </label>
-          <select id="requestType" className="request-input">
-            <option value="">Select Request Type</option>
-            <option value="call">Call Me Back</option>
-            <option value="info">Need More Info</option>
-            <option value="custom">Custom Request</option>
-          </select>
+          <div
+            className="request-input"
+            onClick={() => {
+              setIsRequest(true);
+              services?.getRequestType();
+            }}
+            style={{
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            {formData.requestType || "Select a request type"}
+          </div>
+          {/* <select id="requestType" className="request-input"></select> */}
           {errors.requestType && (
             <p className="error-text">{errors.requestType}</p>
           )}
@@ -120,6 +133,57 @@ const RequestModal = () => {
               Submit
             </button>
           </div>
+        </div>
+      </DialogModal>
+
+      <DialogModal
+        isOpen={isRequest}
+        onClose={() => setIsRequest(false)}
+        // style={{ minWidth: "400px", padding: "16px" }}
+        style={{
+          minWidth: "30%",
+          width: "90%",
+          maxWidth: "700px",
+          padding: "16px",
+          height: "80vh",
+          borderRadius: "12px",
+          boxSizing: "border-box",
+          overflowY: "auto",
+        }}
+      >
+        <h3>Select Request Type</h3>
+        <br />
+        <div className="location-search" style={{ width: "100%" }}>
+          <span className="search-icon">
+            <FaSearch />
+          </span>
+          <input
+            type="text"
+            placeholder="Search Your Request Type"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        <div>
+          {services?.requestType?.length > 0 ? (
+            services?.requestType?.map((val, ind) => (
+              <div
+                onClick={() => {
+                  setFormData({ ...formData, requestType: val });
+                  setIsRequest(false);
+                }}
+                style={{
+                  padding: "10px",
+                  borderBottom: "1px solid #ccc",
+                  cursor: "pointer",
+                }}
+              >
+                {val}
+              </div>
+            ))
+          ) : (
+            <p style={{ textAlign: "center" }}>No Data Found</p>
+          )}
         </div>
       </DialogModal>
     </>

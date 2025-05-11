@@ -13,7 +13,10 @@ import { LuLocateFixed } from "react-icons/lu";
 import { setCurrentLink } from "../../Redux/pageTypeSlice";
 import HomePageSection from "./Components/HomePageSection";
 import DynamicSection from "./Components/DynamicSection";
-import { MdOutlineLocationOn } from "react-icons/md";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineLocationOn,
+} from "react-icons/md";
 import useServices from "./hooks/useServices";
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +39,9 @@ const NavBar = () => {
       dispatch(setCurrentLink(savedLink));
     }
   }, [dispatch]);
+  useEffect(() => {
+    handleLocateMe(setLocationData);
+  }, []);
   const bannerTypeClass =
     currentLink !== "Home"
       ? `faq_background ${pageType}`
@@ -107,6 +113,7 @@ const NavBar = () => {
               <div className="location_desk" onClick={openLocationModal}>
                 <MdOutlineLocationOn fontSize={18} />
                 {locationData?.locationData}
+                <MdOutlineKeyboardArrowDown fontSize={18} />
               </div>
 
               <button
@@ -120,7 +127,8 @@ const NavBar = () => {
           </div>
 
           <div className="location_mobile" onClick={openLocationModal}>
-            Coimbatore, Tamil Nadu 641105, India
+            <MdOutlineLocationOn fontSize={12} />
+            {locationData?.locationData}
           </div>
         </nav>
 
@@ -142,7 +150,7 @@ const NavBar = () => {
         <div className="location-modal">
           <div className="location-title">Setup your Location</div>
 
-          <div className="location-search">
+          <div className="location-search" style={{ width: "100%" }}>
             <span className="search-icon">🔍</span>
             <input
               type="text"

@@ -7,14 +7,17 @@ const useServices = () => {
   const [category, setCategory] = useState([]);
   const [shopList, setShopList] = useState([]);
 
-  const getPopularCoupons = async (page) => {
+  const getPopularCoupons = async (page = 1, append = false) => {
     try {
       const response = await APIRequest.request(
         "GET",
         `${ConfigAPIURL.popularCoupons}?page=${page ?? 1}&size=10`,
         ""
       );
-      setPopularCoupons(response?.results?.data);
+      // setPopularCoupons(response?.results?.data);
+      const newData = response?.results?.data || [];
+      setPopularCoupons((prev) => (append ? [...prev, ...newData] : newData));
+      return newData.length > 0;
     } catch (error) {
       console.error("Error searching location:", error);
       throw error;
