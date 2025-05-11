@@ -7,8 +7,6 @@ const APIRequest = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        latitude: 12.9369747,
-        longitude: 77.6202519,
       },
       credentials: "include",
     };
