@@ -4,6 +4,7 @@ import APIRequest from "../../../utilis/APIRequest";
 
 function useApiCalls() {
   const [testimonials, setTestimonials] = useState([]);
+  const [requestType, setRequestType] = useState([]);
   useEffect(() => {
     // getAddressList("");
     getTestimonials();
@@ -33,9 +34,29 @@ function useApiCalls() {
       console.log(error);
     }
   };
+
+  const getRequestType = async () => {
+    try {
+      const response = await APIRequest.request(
+        "GET",
+        ConfigAPIURL.supportRequest,
+        ""
+      );
+
+      console.log(response, "response");
+
+      if (response?.error === false) {
+        setRequestType(response?.results?.data || []);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     getAddressList,
     testimonials,
+    getRequestType,
+    requestType,
   };
 }
 
