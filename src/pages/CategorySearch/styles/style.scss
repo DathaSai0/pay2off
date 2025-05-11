@@ -41,6 +41,9 @@
         font-size: 14px;
         background: transparent;
       }
+      @media (max-width: 768px) {
+       width: 70%;
+      }
 }
 
 .data-content{
@@ -75,7 +78,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  padding: 20px;
+  // padding: 20px;
   & > * {
     flex: 0 1 calc(50% - 1rem); // Two cards per row with spacing
     max-width: calc(50% - 1rem); // Ensure it doesn’t overflow
@@ -113,5 +116,14 @@
         flex: 0 1 100%; // One per row on mobile
       }
     }
+  }
+  .recent-search{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    background: #fff;
   }
   

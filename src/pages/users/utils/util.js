@@ -6,3 +6,11 @@ export function formatDateToDDMMYYYY(isoDate) {
 
   return `${day}-${month}-${year}`;
 }
+
+export const getRemainingDays = (dateString) => {
+  const now = new Date();
+  const targetDate = new Date(dateString);
+  const diffTime = targetDate - now;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return isNaN(diffDays) ? null : diffDays;
+};

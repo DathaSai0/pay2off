@@ -24,6 +24,10 @@ class ConfigAPIURL {
 
   //store details
   static getStoreDetails = this.baseUrl + "/core/userCoupons/getStoreDetails";
+
+  //support request
+  static supportRequest =
+    this.baseUrl + "/core/dashboard/support-request-type/user";
 }
 
 export default ConfigAPIURL;

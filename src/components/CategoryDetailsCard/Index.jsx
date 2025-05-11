@@ -63,7 +63,7 @@ const CategoryDetailsCard = ({
           {distance && (
             <div className="business-card__detail">
               <FaLocationDot className="icon map" />
-              {/* <span>{`${distance?.toFixed(2)} kms`}</span> */}
+              <span>{`${distance?.toFixed(2)} kms`}</span>
             </div>
           )}
 

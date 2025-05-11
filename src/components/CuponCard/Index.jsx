@@ -4,6 +4,8 @@ import "./styles/style.scss";
 import { RiDiscountPercentLine } from "react-icons/ri";
 import DialogModal from "../DialogModal/Index";
 import OfferModal from "./OfferModal";
+import { getRemainingDays } from "../../pages/users/utils/util";
+import { CiCalendar } from "react-icons/ci";
 
 const CouponCard = ({
   name,
@@ -54,9 +56,33 @@ const CouponCard = ({
         </div>
 
         <div className="card-bottom">
-          <div className="time">
+          {/* <div className="time">
             <FaClock className="clock-icon" />
             <span>{time}</span>
+          </div> */}
+          <div className="time">
+            {(() => {
+              const remainingDays = getRemainingDays(time);
+
+              if (remainingDays !== null && remainingDays <= 15) {
+                return (
+                  <>
+                    <FaClock
+                      className="clock-icon"
+                      style={{ color: "green" }}
+                    />
+                    <span>{remainingDays} days left</span>
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <CiCalendar className="clock-icon" />
+                    <span>{time}</span>
+                  </>
+                );
+              }
+            })()}
           </div>
           <button className="more-details">More Details</button>
         </div>
