@@ -32,6 +32,13 @@ const CategorySearch = () => {
     saveToRecentSearch(name);
     navigate(`/storeDetails?id=${id}`);
   };
+
+  const handleNavigate = (category) => {
+    saveToRecentSearch();
+    navigate(
+      `/categories?cat_image=https://core.pay2off.com/${category?.category_img}&cat_name=${category?.category_name}&cat_id=${category?._id}`
+    );
+  };
   return (
     <div>
       <div className="store-header">
@@ -60,7 +67,14 @@ const CategorySearch = () => {
           <h3>Recent Search</h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
             {recentSearches.map((item, index) => (
-              <div key={index} className="recent-search">
+              <div
+                key={index}
+                className="recent-search"
+                onClick={() => {
+                  setSearchQuery(item);
+                  services?.searchItems(item);
+                }}
+              >
                 <span style={{ marginRight: "6px" }}>
                   <FaClockRotateLeft />
                 </span>
@@ -77,7 +91,7 @@ const CategorySearch = () => {
             <div className="search-wrapper">
               {services?.category?.length > 0 &&
                 services?.category?.map((data, ind) => (
-                  <div onClick={() => saveToRecentSearch(data?.category_name)}>
+                  <div onClick={() => handleNavigate(data)}>
                     <SearchCardCategory data={data} />
                   </div>
                 ))}

@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  type: "user", // vendor , marketer
+  // type: "user", // vendor , marketer
+  type:
+    typeof window !== "undefined"
+      ? localStorage.getItem("pageType") || "user"
+      : "user",
   // currentLink: "Home",
   currentLink:
     typeof window !== "undefined"
@@ -14,6 +18,9 @@ export const pageTypeSlice = createSlice({
   reducers: {
     handleChangePage: (state, action) => {
       state.type = action.payload;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("pageType", action.payload); // ✅ Save to localStorage
+      }
     },
     setCurrentLink: (state, action) => {
       // state.currentLink = action.payload;

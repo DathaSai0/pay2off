@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReusablePageCard from "../../components/ReusablePageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChangePage } from "../../Redux/pageTypeSlice";
@@ -19,6 +19,12 @@ function Home() {
   console.log(pageType, "pageType");
 
   const services = useApiCalls();
+  useEffect(() => {
+    const savedType = localStorage.getItem("pageType");
+    if (savedType && savedType !== pageType.type) {
+      dispatch(handleChangePage(savedType));
+    }
+  }, []);
 
   return (
     <>
