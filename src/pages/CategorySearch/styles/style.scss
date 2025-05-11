@@ -44,12 +44,15 @@
 }
 
 .data-content{
-  margin:0px 15%
+  margin:0px 15%;
+  @media (max-width: 768px) {
+    margin: 0px 5%;
+  }
 }
 .search-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 20px;
@@ -66,6 +69,27 @@
   }
 }
 
+.shop-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 20px;
+  & > * {
+    flex: 0 1 calc(50% - 1rem); // Two cards per row with spacing
+    max-width: calc(50% - 1rem); // Ensure it doesn’t overflow
+  }
+
+  @media (max-width: 768px) {
+    & > * {
+      flex: 0 1 100%; // One card per row on mobile
+      max-width: 100%;
+    }
+  }
+ 
+}
+
   .live_title{
     text-align: left;
     // margin-left:26%;
@@ -74,8 +98,8 @@
   .coupon-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2rem;
+    justify-content: space-between;
+    gap: 1.5rem;
     padding: 10px;
     // margin:0px 10%;
   

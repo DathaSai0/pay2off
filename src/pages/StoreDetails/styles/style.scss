@@ -27,16 +27,26 @@
       margin: 0;
     }
   }
+  .data-content{
+    margin: 0px 10%;
+  }
   
   .category-wrapper {
     display: flex;
     justify-content: center; 
-    padding: 24px; 
+    padding: 6px 2px; 
   
     // Optional: to center vertically if needed
     // align-items: center;
     // min-height: 80vh;
   }
-  .live_title{
-    margin-left:26%;
+  // .live_title{
+  //   margin-left:26%;
+  // }
+  .list_live{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 10px;
   }

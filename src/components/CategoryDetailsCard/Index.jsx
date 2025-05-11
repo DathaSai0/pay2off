@@ -3,18 +3,18 @@ import "./styles/style.scss";
 import { BiHeart } from "react-icons/bi";
 import { FaCrown, FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import logo from "../../assets/Images/Pay2off Logo 1.png";
 
 const CategoryDetailsCard = ({
-  //   logo,
+  logo,
   //   category,
   name,
   address,
-  rating = 0,
+  rating,
   distance,
   count,
   isFavorite = false,
   showContent,
+  id,
 }) => {
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -25,7 +25,11 @@ const CategoryDetailsCard = ({
   return (
     <div
       className="business-card"
-      style={{ width: showContent && "50%", maxWidth: showContent && "60%" }}
+      style={{
+        width: showContent && "100%",
+        maxWidth: showContent && "100%",
+        padding: showContent && "1rem",
+      }}
     >
       <div className="business-card__logo-container">
         {!showContent && (
@@ -35,7 +39,12 @@ const CategoryDetailsCard = ({
         )}
 
         <div className="business-card__logo">
-          {logo && <img src={logo} alt={`${name} logo`} />}
+          {logo && (
+            <img
+              src={`https://core.pay2off.com/${logo}`}
+              alt={`${name} logo`}
+            />
+          )}
         </div>
       </div>
 
@@ -48,13 +57,13 @@ const CategoryDetailsCard = ({
         <div className="business-card__details">
           <div className="business-card__detail">
             <FaStar className="icon star" />
-            <span>{rating}</span>
+            <span>{rating ?? 0}</span>
           </div>
 
           {distance && (
             <div className="business-card__detail">
               <FaLocationDot className="icon map" />
-              <span>{distance}</span>
+              {/* <span>{`${distance?.toFixed(2)} kms`}</span> */}
             </div>
           )}
 
@@ -66,13 +75,15 @@ const CategoryDetailsCard = ({
         </div>
       </div>
 
-      <button
-        className="business-card__favorite"
-        onClick={toggleFavorite}
-        aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        <BiHeart className={`icon heart ${favorite ? "favorite" : ""}`} />
-      </button>
+      {!showContent && (
+        <button
+          className="business-card__favorite"
+          onClick={toggleFavorite}
+          aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+        >
+          <BiHeart className={`icon heart ${favorite ? "favorite" : ""}`} />
+        </button>
+      )}
     </div>
   );
 };

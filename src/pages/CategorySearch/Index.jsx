@@ -6,6 +6,8 @@ import { FaSearch } from "react-icons/fa";
 import useServices from "./hooks/useServices";
 import { useEffect, useState } from "react";
 import CouponCard from "../../components/CuponCard/Index";
+import { formatDateToDDMMYYYY } from "../users/utils/util";
+import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
 
 const CategorySearch = () => {
   const navigate = useNavigate();
@@ -18,6 +20,10 @@ const CategorySearch = () => {
   useEffect(() => {
     services?.getPopularCoupons();
   }, []);
+
+  const handleClick = (id) => {
+    navigate(`/storeDetails?id=${id}`);
+  };
   return (
     <div>
       <div className="store-header">
@@ -47,12 +53,44 @@ const CategorySearch = () => {
               </>
             ))}
         </div>
+
+        <div className="shop-wrapper">
+          {services?.shopList?.length > 0 &&
+            services?.shopList?.map((data, ind) => (
+              <div
+                onClick={() => handleClick(data?._id)}
+                style={{ cursor: "pointer" }}
+              >
+                <CategoryDetailsCard
+                  key={data._id}
+                  name={data.name}
+                  address={data.landmark}
+                  logo={data?.image}
+                  rating={data.rating}
+                  distance={data.distance}
+                  count={data.coupon_count}
+                  isFavorite={data.isFavorite}
+                  showContent={false}
+                />
+              </div>
+            ))}
+        </div>
         <h2>Popular Coupons</h2>
 
         <div className="coupon-grid">
           {services?.popularCoupons?.length > 0 &&
-            services?.popularCoupons?.map((coupon, ind) => (
-              <CouponCard key={ind} coupon={coupon} />
+            services?.popularCoupons?.map((data, ind) => (
+              <CouponCard
+                key={ind}
+                {...{
+                  name: data?.shop_name,
+                  categoryName: data?.categoryNames?.[0]?.name || "Meat Shop",
+                  description: data?.coupon_title || "",
+                  ratings: data?.ratings || 0,
+                  subDescription: data?.coupon_sub_title || "",
+                  time: formatDateToDDMMYYYY(data?.expired_date_time),
+                }}
+              />
             ))}
         </div>
       </div>

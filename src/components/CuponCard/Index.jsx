@@ -12,6 +12,7 @@ const CouponCard = ({
   ratings,
   subDescription,
   time,
+  store,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,20 +22,27 @@ const CouponCard = ({
 
   return (
     <>
-      <div className="discount-card" onClick={() => setIsModalOpen(true)}>
-        <div className="card-top">
-          {/* <div className="shop-name">
+      <div
+        className="discount-card"
+        onClick={() => setIsModalOpen(true)}
+        style={{ maxWidth: store && "400px", minHeight: store && "0px" }}
+      >
+        {!store && (
+          <div className="card-top">
+            {/* <div className="shop-name">
             Amarachicken Hindustan Bidding and Furniture
             <span className="tag">Meat Shop</span>
           </div> */}
-          <div className="shop-name" data-name={name}>
-            <span className="tag">{categoryName}</span>
+
+            <div className="shop-name" data-name={name}>
+              <span className="tag">{categoryName}</span>
+            </div>
+            <div className="rating">
+              <FaStar className="star-icon" />
+              <span>{ratings}</span>
+            </div>
           </div>
-          <div className="rating">
-            <FaStar className="star-icon" />
-            <span>{ratings}</span>
-          </div>
-        </div>
+        )}
 
         <div className="offer">
           <RiDiscountPercentLine className="percent-icon" />
@@ -57,6 +65,7 @@ const CouponCard = ({
       {isModalOpen && (
         <OfferModal
           onClose={() => setIsModalOpen(false)}
+          store={store}
           {...{
             name,
             categoryName,
