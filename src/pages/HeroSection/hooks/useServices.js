@@ -9,7 +9,7 @@ const useServices = () => {
     try {
       const response = await APIRequest.request(
         "GET",
-        `${ConfigAPIURL.locationSearch}?query=${query}`,
+        `${ConfigAPIURL.locationSearch}?query=${query ?? ""}`,
         ""
       );
       setLocation(response?.results);

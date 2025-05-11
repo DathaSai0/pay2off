@@ -15,18 +15,17 @@ const CategorySearch = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [recentSearches, setRecentSearches] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const handleBack = () => {
     navigate(-1);
   };
-
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("recentSearches")) || [];
     setRecentSearches(saved);
   }, []);
   const services = useServices();
-  useEffect(() => {
-    services?.getPopularCoupons();
-  }, []);
 
   const handleClick = (id, name) => {
     saveToRecentSearch(name);
@@ -39,6 +38,37 @@ const CategorySearch = () => {
       `/categories?cat_image=https://core.pay2off.com/${category?.category_img}&cat_name=${category?.category_name}&cat_id=${category?._id}`
     );
   };
+
+  useEffect(() => {
+    services.getPopularCoupons(1).then((hasMoreData) => {
+      setHasMore(hasMoreData);
+    });
+  }, []);
+
+  const loadMoreCoupons = async () => {
+    setLoading(true);
+    const nextPage = page + 1;
+    const hasMoreData = await services.getPopularCoupons(nextPage, true);
+    setPage(nextPage);
+    setHasMore(hasMoreData);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 100 >=
+        document.documentElement.offsetHeight
+      ) {
+        if (!loading && hasMore && searchQuery.trim() === "") {
+          loadMoreCoupons();
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading, hasMore, searchQuery]);
   return (
     <div>
       <div className="store-header">
@@ -141,6 +171,9 @@ const CategorySearch = () => {
                   />
                 ))}
             </div>
+            {loading && (
+              <p style={{ textAlign: "center" }}>Loading more coupons...</p>
+            )}
           </>
         )}
       </div>
