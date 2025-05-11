@@ -4,7 +4,7 @@ import defaultImage from "../../../assets/Images/testimonialImage.png";
 import testimonialText from "../../../assets/Images/testimonialCard.png";
 // import "./TestimonialCard.scss";
 
-const TestimonialCard = () => {
+const TestimonialCard = ({ title, description, ownerName, shopName }) => {
   const name = "Lekha R";
   const text2 = "Peacock designers";
   return (
@@ -18,29 +18,22 @@ const TestimonialCard = () => {
 
       <div className="testimonial-content">
         <div className="testimonial-header">
-          <h1 className="testimonial-tag">VENDOR REVIEW</h1>
+          <h1 className="testimonial-tag">{title || "VENDOR REVIEW"}</h1>
           <img
             src={defaultImage}
             alt="User Avatar"
             className="testimonial-avatar"
           />
           <div className="testimonial-user-details">
-            <h3>{name}</h3>
-            <p>{text2}</p>
+            <h3>{ownerName || name}</h3>
+            <p>{shopName || text2}</p>
           </div>
         </div>
 
         <div className="testimonial-body">
           <p>
             <FaQuoteLeft className="quote-icon left" />
-            As a small business owner, I was initially hesitant about joining a
-            digital platform. However, teaming up with Pay2off has been one of
-            the best decisions for our shop. Their user-friendly interface made
-            it effortless to manage our promotions, and the insights provided
-            allowed us to tailor our offerings effectively. The exposure and
-            engagement we've gained through Pay2off have truly exceeded our
-            expectations, helping us build lasting relationships with our
-            customers.
+            {description || ""}
             <FaQuoteRight className="quote-icon right" />
           </p>
         </div>

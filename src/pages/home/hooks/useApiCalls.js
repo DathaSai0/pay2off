@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ConfigAPIURL from "../../../config/ConfigAPIURL";
 import APIRequest from "../../../utilis/APIRequest";
 
 function useApiCalls() {
+  const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
     // getAddressList("");
     getTestimonials();
@@ -24,12 +25,17 @@ function useApiCalls() {
       );
 
       console.log(response, "response");
+
+      if (response?.error === false) {
+        setTestimonials(response?.results?.data || []);
+      }
     } catch (error) {
       console.log(error);
     }
   };
   return {
     getAddressList,
+    testimonials,
   };
 }
 

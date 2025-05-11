@@ -5,7 +5,14 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import DialogModal from "../DialogModal/Index";
 import OfferModal from "./OfferModal";
 
-const CouponCard = ({ coupon }) => {
+const CouponCard = ({
+  name,
+  categoryName,
+  description,
+  ratings,
+  subDescription,
+  time,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openRequestModal = () => {
@@ -20,12 +27,12 @@ const CouponCard = ({ coupon }) => {
             Amarachicken Hindustan Bidding and Furniture
             <span className="tag">Meat Shop</span>
           </div> */}
-          <div className="shop-name" data-name={coupon?.shop_name}>
-            <span className="tag">{coupon?.categoryNames?.[0]?.name}</span>
+          <div className="shop-name" data-name={name}>
+            <span className="tag">{categoryName}</span>
           </div>
           <div className="rating">
             <FaStar className="star-icon" />
-            <span>{coupon?.ratings}</span>
+            <span>{ratings}</span>
           </div>
         </div>
 
@@ -33,21 +40,33 @@ const CouponCard = ({ coupon }) => {
           <RiDiscountPercentLine className="percent-icon" />
 
           <div className="offer-text">
-            <strong>{coupon?.coupon_title}</strong>
-            <p>{coupon?.coupon_sub_title}</p>
+            <strong>{description}</strong>
+            <p>{subDescription}</p>
           </div>
         </div>
 
         <div className="card-bottom">
           <div className="time">
             <FaClock className="clock-icon" />
-            <span>{coupon?.expired_date_time}</span>
+            <span>{time}</span>
           </div>
           <button className="more-details">More Details</button>
         </div>
       </div>
 
-      {isModalOpen && <OfferModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <OfferModal
+          onClose={() => setIsModalOpen(false)}
+          {...{
+            name,
+            categoryName,
+            description,
+            ratings,
+            subDescription,
+            time,
+          }}
+        />
+      )}
     </>
   );
 };

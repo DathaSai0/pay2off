@@ -23,7 +23,6 @@ const APIRequest = {
         return response.json();
       })
       .then((data) => {
-        console.log(data, "datha");
         return this.returnResponse(data, url, config); // Handle the response
       })
       .catch(() => {

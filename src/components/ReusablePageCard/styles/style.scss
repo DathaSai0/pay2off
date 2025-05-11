@@ -1,5 +1,6 @@
 .page-card-container {
-  min-width: 200px;
+  min-width: 290px;
+  max-width: 350px;
   min-height: 135px;
   background-color: #ffffff;
   padding: 16px;
@@ -8,10 +9,11 @@
   position: relative;
   box-shadow: 0px 2px 8px 0px #00000014;
   cursor: pointer;
+   @media (max-width: 768px) {
+     min-height: 160px;
+  }
 }
-// .page-card-container:hover {
-//   background-color: #fbfbfb;
-// }
+
 
 .page-card-title {
   font-weight: 700;

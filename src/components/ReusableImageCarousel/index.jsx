@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles/style.scss";
 import { useNavigate } from "react-router-dom";
+import add2Image from "../../assets/Images/adv2Image.png";
 
 const InfiniteImageCarousel = ({ images, type }) => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const InfiniteImageCarousel = ({ images, type }) => {
         }}
         className="custom-swiper"
       >
-        {images.map((item, i) => (
+        {images?.map((item, i) => (
           <SwiperSlide
             key={i}
             className="carousel-slide"
@@ -52,7 +53,7 @@ const InfiniteImageCarousel = ({ images, type }) => {
             onClick={handleImageClick}
           >
             <img
-              src={item}
+              src={`https://core.pay2off.com/${item?.image}`}
               className="carousel-image"
               style={{
                 width: type === "big" ? "375px" : "260px",

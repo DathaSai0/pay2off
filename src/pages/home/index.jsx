@@ -18,7 +18,7 @@ function Home() {
 
   console.log(pageType, "pageType");
 
-  const { getAddressList } = useApiCalls();
+  const services = useApiCalls();
 
   return (
     <>
@@ -43,10 +43,16 @@ function Home() {
       {pageType?.type === "user" && <Users />}
 
       <ReusableCarousel>
-        <TestimonialCard />
-        <TestimonialCard />
-        <TestimonialCard />
-        <TestimonialCard />
+        {services?.testimonials?.length > 0 &&
+          services?.testimonials?.map((data, i) => (
+            <TestimonialCard
+              key={i}
+              title={data?.title}
+              description={data?.description}
+              ownerName={data?.Owner_name}
+              shopName={data?.Shop_name}
+            />
+          ))}
       </ReusableCarousel>
 
       <RequestModal />

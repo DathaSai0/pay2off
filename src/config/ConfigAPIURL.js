@@ -11,6 +11,16 @@ class ConfigAPIURL {
 
   static popularCoupons = this.baseUrl + "/core/dashboard/popular-coupon";
   static homeSearchItems = this.baseUrl + "/core/dashboard/searchterms";
+  //categories
+  static getCategories = this.baseUrl + "/core/dashboard/categories";
+
+  //coupons
+  static getTrendingCoupons = this.baseUrl + "/core/dashboard/trending-coupon";
+  static getPopularCoupons = this.baseUrl + "/core/dashboard/popular-coupon";
+
+  // adds
+  static getLargeAdds = this.baseUrl + "/core/dashboard/large-ad";
+  static getSmallAdds = this.baseUrl + "/core/dashboard/small-ad";
 }
 
 export default ConfigAPIURL;

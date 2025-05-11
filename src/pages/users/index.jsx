@@ -6,6 +6,8 @@ import addImage from "../../assets/Images/addImage.png";
 import add2Image from "../../assets/Images/adv2Image.png";
 import CouponCard from "../../components/CuponCard/Index";
 import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
+import useApiCalls from "./hooks/useApicalls";
+import { formatDateToDDMMYYYY } from "./utils/util";
 
 const businesses = [
   {
@@ -38,6 +40,7 @@ const businesses = [
 ];
 
 function Users() {
+  const services = useApiCalls();
   const images = [
     addImage,
     addImage,
@@ -80,58 +83,103 @@ function Users() {
             padding: "50px 50px",
           }}
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 22, 12, 13, 14, 14]?.map(
-            (data, index) => (
-              <div className="carousel-item-group" key={index}>
-                {[1, 2].map((_, i) => (
-                  <div className="category-card" key={i}>
-                    <div className="category-image-wrapper">
-                      <img
-                        src={catFruits}
-                        alt="category"
-                        className="category-image"
-                      />
+          {services?.categoryList?.length > 0 &&
+            services.categoryList
+              .reduce((result, _, index, array) => {
+                if (index % 2 === 0) {
+                  const pair = array.slice(index, index + 2);
+                  result.push(pair);
+                }
+                return result;
+              }, [])
+              .map((group, groupIndex) => (
+                <div className="carousel-item-group" key={groupIndex}>
+                  {group.map((category, i) => (
+                    <div
+                      className="category-card"
+                      key={i}
+                      onClick={() => {
+                        alert(category?.category_name); //category?._id,
+                      }}
+                    >
+                      <div className="category-image-wrapper">
+                        <img
+                          src={`https://core.pay2off.com/${category?.category_img}`} //catFruits
+                          alt={category?.category_name}
+                          className="category-image"
+                        />
+                      </div>
+                      <p className="category-label">
+                        {category?.category_name}
+                      </p>
                     </div>
-                    <p className="category-label">Fruits</p>
-                  </div>
-                ))}
-              </div>
-            )
-          )}
+                  ))}
+                </div>
+              ))}
         </ReusableCarousel>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "2rem",
-          padding: "16px",
-        }}
-      >
-        {[1, 2, 3, 4, 5, 6, 6, 8, 9]?.map((val, ind) => (
-          <CouponCard />
-        ))}
-      </div>
+      {services?.couponsList?.top?.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "2rem",
+            padding: "16px",
+          }}
+        >
+          {services?.couponsList?.top?.map((data, ind) => (
+            <CouponCard
+              key={ind}
+              {...{
+                name: data?.shop_name,
+                categoryName: data?.categoryNames?.[0]?.name || "Meat Shop",
+                description: data?.coupon_title || "",
+                ratings: data?.ratings || 0,
+                subDescription: data?.coupon_sub_title || "",
+                time: formatDateToDDMMYYYY(data?.expired_date_time),
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-      <InfiniteImageCarousel images={images2} type="big" />
+      {services?.adds?.large?.length > 0 && (
+        <InfiniteImageCarousel
+          images={services?.adds?.large || []}
+          type="big"
+        />
+      )}
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "2rem",
-          padding: "16px",
-        }}
-      >
-        {[1, 2, 3, 4, 5, 6, 6, 8, 9]?.map((val, ind) => (
-          <CouponCard />
-        ))}
-      </div>
-
-      <InfiniteImageCarousel images={images} />
+      {services?.couponsList?.bottom?.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "2rem",
+            padding: "16px",
+          }}
+        >
+          {services?.couponsList?.bottom?.map((data, ind) => (
+            <CouponCard
+              key={ind}
+              {...{
+                name: data?.shop_name,
+                categoryName: data?.categoryNames?.[0]?.name || "Meat Shop",
+                description: data?.coupon_title || "",
+                ratings: data?.ratings || 0,
+                subDescription: data?.coupon_sub_title || "",
+                time: formatDateToDDMMYYYY(data?.expired_date_time),
+              }}
+            />
+          ))}
+        </div>
+      )}
+      {services?.adds?.small > 0 && (
+        <InfiniteImageCarousel images={services?.adds?.small || []} />
+      )}
     </>
   );
 }
