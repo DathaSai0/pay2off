@@ -5,7 +5,14 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import DialogModal from "../DialogModal/Index";
 import OfferModal from "./OfferModal";
 
-const CouponCard = () => {
+const CouponCard = ({
+  name,
+  categoryName,
+  description,
+  ratings,
+  subDescription,
+  time,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openRequestModal = () => {
@@ -20,15 +27,12 @@ const CouponCard = () => {
             Amarachicken Hindustan Bidding and Furniture
             <span className="tag">Meat Shop</span>
           </div> */}
-          <div
-            className="shop-name"
-            data-name="Amarachicken Hindustan Bidding and Furniture"
-          >
-            <span className="tag">Meat Shop</span>
+          <div className="shop-name" data-name={name}>
+            <span className="tag">{categoryName}</span>
           </div>
           <div className="rating">
             <FaStar className="star-icon" />
-            <span>4.9</span>
+            <span>{ratings}</span>
           </div>
         </div>
 
@@ -36,21 +40,33 @@ const CouponCard = () => {
           <RiDiscountPercentLine className="percent-icon" />
 
           <div className="offer-text">
-            <strong>50% OFF Upto ₹100</strong>
-            <p>Save more with coupon and offers</p>
+            <strong>{description}</strong>
+            <p>{subDescription}</p>
           </div>
         </div>
 
         <div className="card-bottom">
           <div className="time">
             <FaClock className="clock-icon" />
-            <span>5h 30m</span>
+            <span>{time}</span>
           </div>
           <button className="more-details">More Details</button>
         </div>
       </div>
 
-      {isModalOpen && <OfferModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <OfferModal
+          onClose={() => setIsModalOpen(false)}
+          {...{
+            name,
+            categoryName,
+            description,
+            ratings,
+            subDescription,
+            time,
+          }}
+        />
+      )}
     </>
   );
 };

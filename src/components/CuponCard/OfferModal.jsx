@@ -8,7 +8,15 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoIosCloseCircleOutline, IoMdClose } from "react-icons/io";
 import { BiCalendar } from "react-icons/bi";
 
-const OfferModal = ({ onClose }) => {
+const OfferModal = ({
+  onClose,
+  name,
+  categoryName,
+  description,
+  ratings,
+  subDescription,
+  time,
+}) => {
   const handleOverlayClick = () => {
     onClose();
   };
@@ -28,11 +36,11 @@ const OfferModal = ({ onClose }) => {
         <div className="modal-bottom" onClick={handleContentClick}>
           <div className="card-topSection">
             <div className="shop-name">
-              Amarachicken <span className="tag">Meat Shop</span>
+              {name} <span className="tag">{categoryName}</span>
             </div>
             <div className="rating">
               <FaStar className="star-icon" />
-              <span>4.9</span>
+              <span>{ratings}</span>
             </div>
           </div>
 
@@ -40,15 +48,15 @@ const OfferModal = ({ onClose }) => {
             <RiDiscountPercentLine className="percent-icon" />
 
             <div className="offer-text">
-              <strong>50% OFF Upto ₹100</strong>
-              <p>Save more with coupon and offers</p>
+              <strong>{description}</strong>
+              <p>{subDescription}</p>
             </div>
           </div>
 
           <div className="card-bottom">
             <div className="time">
               <BiCalendar className="clock-icon" />
-              <span>05-06-2007</span>
+              <span>{time}</span>
             </div>
           </div>
         </div>

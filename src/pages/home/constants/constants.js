@@ -5,19 +5,21 @@ import marketorCardImage from "../../../assets/Images/MarketerCardImage.png";
 export const homePageCardSection = [
   {
     title: "User",
-    content: "Lorem ipsum dolor sit amet, consectetur .",
+    content:
+      "Unlock local savings with Pay2off's diverse deals—shop smart, save big",
     image: userCardImage,
     type: "user",
   },
   {
     title: "Vendor",
-    content: "Lorem ipsum dolor sit amet, consectetur ",
+    content:
+      "Join Pay2off and boost your sales with ease, Connect with shoppers",
     image: vendorCardImage,
     type: "vendor",
   },
   {
     title: "Marketer",
-    content: "Lorem ipsum dolor sit amet, consectetur",
+    content: "Passionate marketing executive at Pay2off, crafting innovative",
     image: marketorCardImage,
     type: "marketer",
   },

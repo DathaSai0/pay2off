@@ -7,6 +7,8 @@ const APIRequest = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        latitude: 12.9369747,
+        longitude: 77.6202519,
       },
       credentials: "include",
     };
@@ -20,7 +22,6 @@ const APIRequest = {
         return response.json();
       })
       .then((data) => {
-        console.log(data, "datha");
         return this.returnResponse(data, url, config); // Handle the response
       })
       .catch(() => {

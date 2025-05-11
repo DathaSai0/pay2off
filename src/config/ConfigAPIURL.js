@@ -1,6 +1,6 @@
 class ConfigAPIURL {
   //  base URL
-  static baseUrl = "http://192.168.1.239:3040";
+  static baseUrl = "http://192.168.1.236:3040";
 
   // static pruchaseChallenge = this.baseUrl + "/user/sub/purchase"; // POST
   static largeAdvertisement = this.baseUrl + "/core/dashboard/categories"; // GET
@@ -8,6 +8,17 @@ class ConfigAPIURL {
 
   // testimonials
   static testimonials = this.baseUrl + "/core/dashboard/get";
+
+  //categories
+  static getCategories = this.baseUrl + "/core/dashboard/categories";
+
+  //coupons
+  static getTrendingCoupons = this.baseUrl + "/core/dashboard/trending-coupon";
+  static getPopularCoupons = this.baseUrl + "/core/dashboard/popular-coupon";
+
+  // adds
+  static getLargeAdds = this.baseUrl + "/core/dashboard/large-ad";
+  static getSmallAdds = this.baseUrl + "/core/dashboard/small-ad";
 }
 
 export default ConfigAPIURL;
