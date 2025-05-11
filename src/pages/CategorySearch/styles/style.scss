@@ -28,6 +28,7 @@
     padding: 10px 12px;
     border-radius: 6px;
     border: 1px solid #e0e0e0;
+    width: 40%;
 
     .search-icon {
       margin-right: 8px;
@@ -42,15 +43,51 @@
       }
 }
 
+.data-content{
+  margin:0px 15%
+}
 .search-wrapper {
-    display: flex;
-    justify-content: space-around; 
-    padding: 24px; 
-  
-    // Optional: to center vertically if needed
-    // align-items: center;
-    // min-height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 20px;
+
+  & > * {
+    flex: 0 1 calc(50% - 1rem); // Two items per row with gap
+    max-width: 300px; // Optional: set a max width for visual control
   }
+
+  @media (max-width: 768px) {
+    & > * {
+      flex: 0 1 100%; // Full width for smaller screens
+    }
+  }
+}
+
   .live_title{
-    margin-left:26%;
+    text-align: left;
+    // margin-left:26%;
   }
+
+  .coupon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 10px;
+    // margin:0px 10%;
+  
+    // & > * {
+    //   flex: 0 1 calc(50% - 1rem); // Two items per row with spacing
+    //   max-width: 300px;           // Optional: control max size
+    // }
+  
+    @media (max-width: 768px) {
+      & > * {
+        flex: 0 1 100%; // One per row on mobile
+      }
+    }
+  }
+  

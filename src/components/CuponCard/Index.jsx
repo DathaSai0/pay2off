@@ -5,7 +5,7 @@ import { RiDiscountPercentLine } from "react-icons/ri";
 import DialogModal from "../DialogModal/Index";
 import OfferModal from "./OfferModal";
 
-const CouponCard = () => {
+const CouponCard = ({ coupon }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openRequestModal = () => {
@@ -20,15 +20,12 @@ const CouponCard = () => {
             Amarachicken Hindustan Bidding and Furniture
             <span className="tag">Meat Shop</span>
           </div> */}
-          <div
-            className="shop-name"
-            data-name="Amarachicken Hindustan Bidding and Furniture"
-          >
-            <span className="tag">Meat Shop</span>
+          <div className="shop-name" data-name={coupon?.shop_name}>
+            <span className="tag">{coupon?.categoryNames?.[0]?.name}</span>
           </div>
           <div className="rating">
             <FaStar className="star-icon" />
-            <span>4.9</span>
+            <span>{coupon?.ratings}</span>
           </div>
         </div>
 
@@ -36,15 +33,15 @@ const CouponCard = () => {
           <RiDiscountPercentLine className="percent-icon" />
 
           <div className="offer-text">
-            <strong>50% OFF Upto ₹100</strong>
-            <p>Save more with coupon and offers</p>
+            <strong>{coupon?.coupon_title}</strong>
+            <p>{coupon?.coupon_sub_title}</p>
           </div>
         </div>
 
         <div className="card-bottom">
           <div className="time">
             <FaClock className="clock-icon" />
-            <span>5h 30m</span>
+            <span>{coupon?.expired_date_time}</span>
           </div>
           <button className="more-details">More Details</button>
         </div>

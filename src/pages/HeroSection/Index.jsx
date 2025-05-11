@@ -24,7 +24,6 @@ const NavBar = () => {
   const [locationData, setLocationData] = useState(
     JSON.parse(localStorage.getItem("userLocation"))
   );
-  // const locationData = JSON.parse(localStorage.getItem("userLocation"));
   console.log("Loc", locationData);
   const services = useServices();
 
@@ -72,7 +71,7 @@ const NavBar = () => {
         endText: "on Everything",
       };
   }
-  const isTrue = location.pathname === "/";
+  // const isTrue = location.pathname === "/";
 
   const handleLocationSelect = (selectedLocation) => {
     const updatedLocation = {
