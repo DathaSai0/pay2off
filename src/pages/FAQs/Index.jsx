@@ -1,35 +1,12 @@
 import { useState } from "react";
 import "./styles/style.scss";
-
-const faqs = [
-  {
-    id: 1,
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolo.Lorem ipsum dolor. Lorem ipsum dolor. Lorem dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolo.Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolo.Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolo.Lorem ipsum dolor. Lorem ipsum dolor.",
-  },
-  {
-    id: 2,
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam...",
-  },
-  {
-    id: 3,
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nostrud exercitation...",
-  },
-  {
-    id: 4,
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in...",
-  },
-];
+import useApiCalls from "./hooks/useApiCalls";
+import { BounceLoader } from "react-spinners";
 
 const FAQsList = () => {
-  const [activeId, setActiveId] = useState(1);
+  const [activeId, setActiveId] = useState(null);
+
+  const services = useApiCalls();
 
   const toggleFAQ = (id) => {
     setActiveId(activeId === id ? null : id);
@@ -38,20 +15,42 @@ const FAQsList = () => {
   return (
     <div className="faq-container">
       <div className="faq-list">
-        {faqs.map((faq) => (
-          <div
-            key={faq.id}
-            className={`faq-item ${activeId === faq.id ? "active" : ""}`}
-          >
-            <div className="faq-question" onClick={() => toggleFAQ(faq.id)}>
-              {faq.question}
-              <span className="icon">{activeId === faq.id ? "−" : "+"}</span>
+        {services?.faqList?.data?.length > 0 &&
+          !services?.faqList?.isLoading &&
+          services?.faqList?.data?.map((faq) => (
+            <div
+              key={faq?._id}
+              className={`faq-item ${activeId === faq._id ? "active" : ""}`}
+            >
+              <div className="faq-question" onClick={() => toggleFAQ(faq._id)}>
+                {faq.question}
+                <span className="icon">{activeId === faq._id ? "−" : "+"}</span>
+              </div>
+              {activeId === faq._id && (
+                <>
+                  {faq?.answer?.map((ans, i) => (
+                    <div className="faq-answer" key={i}>
+                      {ans}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
-            {activeId === faq.id && (
-              <div className="faq-answer">{faq.answer}</div>
-            )}
+          ))}
+
+        {services?.faqList?.isLoading && (
+          <div className="loadingDiv">
+            <BounceLoader
+              color={"#ff5a1f"}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
           </div>
-        ))}
+        )}
+
+        {services?.faqList?.data?.length === 0 &&
+          !services?.faqList?.isLoading && <p>No data found</p>}
       </div>
     </div>
   );

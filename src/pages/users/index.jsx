@@ -8,61 +8,11 @@ import CouponCard from "../../components/CuponCard/Index";
 import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
 import useApiCalls from "./hooks/useApicalls";
 import { formatDateToDDMMYYYY } from "./utils/util";
-
-const businesses = [
-  {
-    id: 1,
-    name: "aliya telecom",
-    address: "Bazaar Street, Bengaluru Urban",
-    rating: 0,
-    distance: "12.23 kms",
-    count: 1,
-    isFavorite: false,
-  },
-  {
-    id: 2,
-    name: "Global Electronics",
-    address: "MG Road, Bengaluru Urban MG Road, Bengaluru Urban",
-    rating: 4.2,
-    distance: "5.7 kms",
-    count: 3,
-    isFavorite: true,
-  },
-  {
-    id: 3,
-    name: "City Mobile Shop",
-    address: "Commercial Street, Bengaluru",
-    rating: 3.8,
-    distance: "8.1 kms",
-    count: 2,
-    isFavorite: false,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 function Users() {
   const services = useApiCalls();
-  const images = [
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-    addImage,
-  ];
-  const images2 = [
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-    add2Image,
-  ];
+  const navigate = useNavigate();
   return (
     <>
       {/* {businesses.map((business) => (
@@ -96,17 +46,20 @@ function Users() {
                 <div className="carousel-item-group" key={groupIndex}>
                   {group.map((category, i) => (
                     <div
-                      className="category-card"
+                      className="home-category-card"
                       key={i}
                       onClick={() => {
-                        alert(category?.category_name); //category?._id,
+                        // alert(category?.category_name); //category?._id,
+                        navigate(
+                          `/categories?cat_image=https://core.pay2off.com/${category?.category_img}&cat_name=${category?.category_name}&cat_id=${category?._id}`
+                        );
                       }}
                     >
                       <div className="category-image-wrapper">
                         <img
                           src={`https://core.pay2off.com/${category?.category_img}`} //catFruits
                           alt={category?.category_name}
-                          className="category-image"
+                          className="home-category-image"
                         />
                       </div>
                       <p className="category-label">

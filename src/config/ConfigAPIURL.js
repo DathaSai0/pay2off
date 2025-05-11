@@ -19,6 +19,13 @@ class ConfigAPIURL {
   // adds
   static getLargeAdds = this.baseUrl + "/core/dashboard/large-ad";
   static getSmallAdds = this.baseUrl + "/core/dashboard/small-ad";
+
+  // get faqs
+  static getFaqs = this.baseUrl + "/core/dashboard/get-faq";
+
+  // shops by category id
+  static getShopsByCategoryId =
+    this.baseUrl + "/core/dashboard/searchByCategory";
 }
 
 export default ConfigAPIURL;

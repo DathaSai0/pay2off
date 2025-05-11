@@ -8,8 +8,8 @@ const APIRequest = {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Latitude: locationData.latitude || "",
-        Longitude: locationData.longitude || "",
+        Latitude: locationData.latitude || 12.9369747,
+        Longitude: locationData.longitude || 77.6202519,
       },
       credentials: "include",
     };

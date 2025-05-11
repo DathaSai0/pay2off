@@ -14,6 +14,7 @@ import RefundPolicy from "./pages/refundPolicy";
 import FAQsList from "./pages/FAQs/Index";
 import StoreDetails from "./pages/StoreDetails/Index";
 import CategorySearch from "./pages/CategorySearch/Index";
+import Categories from "./pages/categories";
 
 function App() {
   const { isLoaded } = useJsApiLoader({
@@ -35,6 +36,7 @@ function App() {
       </Route>
       <Route path="/storeDetails" element={<StoreDetails />} />
       <Route path="/categorySearch" element={<CategorySearch />} />
+      <Route path="/categories" element={<Categories />} />
     </Routes>
   );
 }
