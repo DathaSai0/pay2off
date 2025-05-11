@@ -3,7 +3,10 @@ import APIRequest from "../../../utilis/APIRequest";
 import ConfigAPIURL from "../../../config/ConfigAPIURL";
 
 function useApiCalls() {
-  const [categoryList, setCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState({
+    data: [],
+    isLoading: false,
+  });
   const [couponsList, setCouponsList] = useState({
     top: [],
     bottom: [],
@@ -20,6 +23,7 @@ function useApiCalls() {
     getSmallAdds();
   }, []);
   const getCategories = async () => {
+    setCategoryList((p) => ({ ...p, isLoading: true }));
     try {
       const response = await APIRequest.request(
         "GET",
@@ -28,10 +32,23 @@ function useApiCalls() {
       );
 
       if (response?.error === false) {
-        setCategoryList(response?.results?.data);
+        setCategoryList((p) => ({
+          ...p,
+          data: response?.results?.data,
+          isLoading: false,
+        }));
+      } else {
+        setCategoryList((p) => ({
+          ...p,
+          isLoading: false,
+        }));
       }
     } catch (error) {
       console.log(error);
+      setCategoryList((p) => ({
+        ...p,
+        isLoading: false,
+      }));
     }
   };
 

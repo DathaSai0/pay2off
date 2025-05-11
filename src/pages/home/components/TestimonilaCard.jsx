@@ -25,7 +25,11 @@ const TestimonialCard = ({ title, description, ownerName, shopName }) => {
             className="testimonial-avatar"
           />
           <div className="testimonial-user-details">
-            <h3>{ownerName || name}</h3>
+            <h3>
+              {(ownerName?.length <= 7
+                ? ownerName
+                : `${ownerName.slice(0, 7)}...`) || name}
+            </h3>
             <p>{shopName || text2}</p>
           </div>
         </div>

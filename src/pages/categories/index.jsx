@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useQuery from "../../hooks/useQuery ";
 import useApiCalls from "./hooks/useApicalls";
 import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
-import { BeatLoader } from "react-spinners";
+import { BeatLoader, DotLoader } from "react-spinners";
 
 function Categories() {
   const navigate = useNavigate();

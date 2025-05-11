@@ -8,23 +8,65 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentLink } from "../../../Redux/pageTypeSlice";
 
-function ContactDetails() {
+function ContactDetails({ services }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    if (!services?.contactDetails?.phone_number) {
+      return services?.setErrors((p) => ({
+        ...p,
+        phone_number: "Phone number is required",
+      }));
+    }
+    if (services?.contactDetails?.phone_number?.length !== 10) {
+      return services?.setErrors((p) => ({
+        ...p,
+        phone_number: "Phone number is not valid",
+      }));
+    }
+    if (!services?.contactDetails?.message) {
+      return services?.setErrors((p) => ({
+        ...p,
+        message: "Message field is required",
+      }));
+    }
+    services?.handleSendMessage();
+  };
+
+  console.log(services?.errors);
   return (
     <div className="contact-details-wrapper">
       <CustomInputField
         label="Enter the mobile Number"
         placeholder="Enter the mobile Number"
         type="number"
-        onChange={() => {}}
+        error={services?.errors?.phone_number}
+        value={services?.contactDetails?.phone_number || ""}
+        onChange={(e) => {
+          services?.setContactDetails((p) => ({
+            ...p,
+            phone_number: e.target.value.slice(0, 10),
+          }));
+
+          delete services?.errors?.["phone_number"];
+        }}
         required
       />
 
       <CustomTextAreaField
         label="Please Comment, How do we Help you?"
         placeholder=""
-        onChange={() => {}}
+        error={services?.errors?.message}
+        value={services?.contactDetails?.message || ""}
+        onChange={(e) => {
+          services?.setContactDetails((p) => ({
+            ...p,
+            message: e.target.value,
+          }));
+
+          delete services?.errors?.["message"];
+        }}
         required
       />
 
@@ -38,7 +80,7 @@ function ContactDetails() {
         >
           Cancel
         </PrimaryButton>
-        <PrimaryButton>Submit</PrimaryButton>
+        <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
       </div>
 
       <div className="contact-method">

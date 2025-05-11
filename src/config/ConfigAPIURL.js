@@ -34,6 +34,12 @@ class ConfigAPIURL {
   //support request
   static supportRequest =
     this.baseUrl + "/core/dashboard/support-request-type/user";
+
+
+
+    
+  static sendSupportMessage =
+    this.baseUrl + "/core/dashboard/support-request-type";
 }
 
 export default ConfigAPIURL;

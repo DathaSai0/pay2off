@@ -9,69 +9,82 @@ import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
 import useApiCalls from "./hooks/useApicalls";
 import { formatDateToDDMMYYYY } from "./utils/util";
 import { useNavigate } from "react-router-dom";
+import { BeatLoader, DotLoader } from "react-spinners";
 
 function Users() {
   const services = useApiCalls();
   const navigate = useNavigate();
   return (
     <>
-      {/* {businesses.map((business) => (
-        <CategoryDetailsCard
-          key={business.id}
-          name={business.name}
-          address={business.address}
-          rating={business.rating}
-          distance={business.distance}
-          count={business.count}
-          isFavorite={business.isFavorite}
-        />
-      ))} */}
-      <div className="category-carousel-wrapper">
-        <ReusableCarousel
-          style={{
-            height: "100%",
-            padding: "50px 50px",
-          }}
-        >
-          {services?.categoryList?.length > 0 &&
-            services.categoryList
-              .reduce((result, _, index, array) => {
-                if (index % 2 === 0) {
-                  const pair = array.slice(index, index + 2);
-                  result.push(pair);
-                }
-                return result;
-              }, [])
-              .map((group, groupIndex) => (
-                <div className="carousel-item-group" key={groupIndex}>
-                  {group.map((category, i) => (
-                    <div
-                      className="home-category-card"
-                      key={i}
-                      onClick={() => {
-                        // alert(category?.category_name); //category?._id,
-                        navigate(
-                          `/categories?cat_image=https://core.pay2off.com/${category?.category_img}&cat_name=${category?.category_name}&cat_id=${category?._id}`
-                        );
-                      }}
-                    >
-                      <div className="category-image-wrapper">
-                        <img
-                          src={`https://core.pay2off.com/${category?.category_img}`} //catFruits
-                          alt={category?.category_name}
-                          className="home-category-image"
-                        />
-                      </div>
-                      <p className="category-label">
-                        {category?.category_name}
-                      </p>
+      <h1 className="user-categories-heading">Categories</h1>
+      {services?.categoryList?.data?.length > 0 &&
+        !services?.categoryList?.isLoading && (
+          <div className="category-carousel-wrapper">
+            <ReusableCarousel
+              style={{
+                height: "100%",
+                padding: "50px 50px",
+              }}
+            >
+              {services?.categoryList?.data?.length > 0 &&
+                services?.categoryList?.data
+                  .reduce((result, _, index, array) => {
+                    if (index % 2 === 0) {
+                      const pair = array.slice(index, index + 2);
+                      result.push(pair);
+                    }
+                    return result;
+                  }, [])
+                  .map((group, groupIndex) => (
+                    <div className="carousel-item-group" key={groupIndex}>
+                      {group.map((category, i) => (
+                        <div
+                          className="home-category-card"
+                          key={i}
+                          onClick={() => {
+                            // alert(category?.category_name); //category?._id,
+                            navigate(
+                              `/categories?cat_image=https://core.pay2off.com/${category?.category_img}&cat_name=${category?.category_name}&cat_id=${category?._id}`
+                            );
+                          }}
+                        >
+                          <div className="category-image-wrapper">
+                            <img
+                              src={`https://core.pay2off.com/${category?.category_img}`} //catFruits
+                              alt={category?.category_name}
+                              className="home-category-image"
+                            />
+                          </div>
+                          <p className="category-label">
+                            {category?.category_name}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   ))}
-                </div>
-              ))}
-        </ReusableCarousel>
-      </div>
+            </ReusableCarousel>
+          </div>
+        )}
 
+      {services?.categoryList?.isLoading && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <BeatLoader
+            color={"#ff5a1f"}
+            size={15}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
+
+      <h1
+        className="user-categories-heading"
+        style={{
+          marginTop: "40px",
+        }}
+      >
+        Trending Coupons
+      </h1>
       {services?.couponsList?.top?.length > 0 && (
         <div
           style={{
@@ -130,7 +143,7 @@ function Users() {
           ))}
         </div>
       )}
-      {services?.adds?.small > 0 && (
+      {services?.adds?.small?.length > 0 && (
         <InfiniteImageCarousel images={services?.adds?.small || []} />
       )}
     </>

@@ -11,6 +11,7 @@ import RequestModal from "./components/RequestModal";
 import Users from "../users";
 import Marketers from "../marketers";
 import useApiCalls from "./hooks/useApiCalls";
+import { BeatLoader, DotLoader } from "react-spinners";
 
 function Home() {
   const pageType = useSelector((state) => state.pageType);
@@ -41,19 +42,34 @@ function Home() {
       <br />
 
       {pageType?.type === "user" && <Users />}
+      {services?.testimonials?.data?.length > 0 &&
+        !services?.testimonials?.isLoading && (
+          <ReusableCarousel>
+            {services?.testimonials?.data?.length > 0 &&
+              services?.testimonials?.data?.map((data, i) => (
+                <TestimonialCard
+                  key={i}
+                  title={data?.title}
+                  description={data?.description}
+                  ownerName={data?.Owner_name}
+                  shopName={data?.Shop_name}
+                />
+              ))}
+          </ReusableCarousel>
+        )}
 
-      <ReusableCarousel>
-        {services?.testimonials?.length > 0 &&
-          services?.testimonials?.map((data, i) => (
-            <TestimonialCard
-              key={i}
-              title={data?.title}
-              description={data?.description}
-              ownerName={data?.Owner_name}
-              shopName={data?.Shop_name}
+      {services?.testimonials?.isLoading && (
+        <div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <BeatLoader
+              color={"#ff5a1f"}
+              size={15}
+              aria-label="Loading Spinner"
+              data-testid="loader"
             />
-          ))}
-      </ReusableCarousel>
+          </div>
+        </div>
+      )}
 
       <RequestModal />
     </>
