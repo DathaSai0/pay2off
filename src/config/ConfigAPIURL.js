@@ -9,6 +9,8 @@ class ConfigAPIURL {
   // testimonials
   static testimonials = this.baseUrl + "/core/dashboard/get";
 
+  static popularCoupons = this.baseUrl + "/core/dashboard/popular-coupon";
+  static homeSearchItems = this.baseUrl + "/core/dashboard/searchterms";
   //categories
   static getCategories = this.baseUrl + "/core/dashboard/categories";
 
@@ -26,6 +28,12 @@ class ConfigAPIURL {
   // shops by category id
   static getShopsByCategoryId =
     this.baseUrl + "/core/dashboard/searchByCategory";
+  //store details
+  static getStoreDetails = this.baseUrl + "/core/userCoupons/getStoreDetails";
+
+  //support request
+  static supportRequest =
+    this.baseUrl + "/core/dashboard/support-request-type/user";
 }
 
 export default ConfigAPIURL;

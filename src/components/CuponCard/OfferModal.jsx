@@ -7,6 +7,8 @@ import { FaClock, FaStar } from "react-icons/fa";
 import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoIosCloseCircleOutline, IoMdClose } from "react-icons/io";
 import { BiCalendar } from "react-icons/bi";
+import { CiCalendar } from "react-icons/ci";
+import { getRemainingDays } from "../../pages/users/utils/util";
 
 const OfferModal = ({
   onClose,
@@ -16,6 +18,7 @@ const OfferModal = ({
   ratings,
   subDescription,
   time,
+  store,
 }) => {
   const handleOverlayClick = () => {
     onClose();
@@ -34,15 +37,17 @@ const OfferModal = ({
           <IoMdClose size={24} />
         </div>
         <div className="modal-bottom" onClick={handleContentClick}>
-          <div className="card-topSection">
-            <div className="shop-name">
-              {name} <span className="tag">{categoryName}</span>
+          {!store && (
+            <div className="card-topSection">
+              <div className="shop-name">
+                {name} <span className="tag">{categoryName}</span>
+              </div>
+              <div className="rating">
+                <FaStar className="star-icon" />
+                <span>{ratings}</span>
+              </div>
             </div>
-            <div className="rating">
-              <FaStar className="star-icon" />
-              <span>{ratings}</span>
-            </div>
-          </div>
+          )}
 
           <div className="offer">
             <RiDiscountPercentLine className="percent-icon" />
@@ -55,8 +60,30 @@ const OfferModal = ({
 
           <div className="card-bottom">
             <div className="time">
-              <BiCalendar className="clock-icon" />
-              <span>{time}</span>
+              {/* <BiCalendar className="clock-icon" />
+              <span>{time}</span> */}
+              {(() => {
+                const remainingDays = getRemainingDays(time);
+
+                if (remainingDays !== null && remainingDays <= 15) {
+                  return (
+                    <>
+                      <FaClock
+                        className="clock-icon"
+                        style={{ color: "green" }}
+                      />
+                      <span>{remainingDays} days left</span>
+                    </>
+                  );
+                } else {
+                  return (
+                    <>
+                      <CiCalendar className="clock-icon" />
+                      <span>{time}</span>
+                    </>
+                  );
+                }
+              })()}
             </div>
           </div>
         </div>

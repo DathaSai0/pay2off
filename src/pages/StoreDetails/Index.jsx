@@ -2,6 +2,10 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import "./styles/style.scss";
 import { useNavigate } from "react-router-dom";
 import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
+import useServices from "./hooks/useServices";
+import CouponCard from "../../components/CuponCard/Index";
+import { useEffect } from "react";
+import { formatDateToDDMMYYYY } from "../users/utils/util";
 
 const businesses = [
   {
@@ -39,6 +43,14 @@ const StoreDetails = () => {
   const handleBack = () => {
     navigate(-1);
   };
+  const services = useServices();
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  useEffect(() => {
+    if (id) {
+      services?.getStoreDetails(id);
+    }
+  }, [id]);
   return (
     <div>
       <div className="store-header">
@@ -48,21 +60,40 @@ const StoreDetails = () => {
         <h2 className="title">Store Details</h2>
       </div>
 
-      <div className="category-wrapper">
-        {businesses.map((business) => (
+      <div className="data-content">
+        <div className="category-wrapper">
           <CategoryDetailsCard
-            key={business.id}
-            name={business.name}
-            address={business.address}
-            rating={business.rating}
-            distance={business.distance}
-            count={business.count}
-            isFavorite={business.isFavorite}
+            name={services.storeDetails.name}
+            address={services.storeDetails.landmark}
+            logo={services.storeDetails.image}
+            rating={services.storeDetails.rating}
+            distance={services.storeDetails.distance}
+            count={services.storeDetails.coupon_count}
+            isFavorite={services.storeDetails.isFavorite}
             showContent={true}
           />
-        ))}
+        </div>
+        <h2 className="live_title">Live Coupons</h2>
+        <div className="list_live">
+          {services?.storeDetails?.active_coupons?.length > 0 &&
+            services?.storeDetails?.active_coupons?.map((data, ind) => (
+              <>
+                <CouponCard
+                  key={ind}
+                  store={true}
+                  {...{
+                    name: data?.shop_name,
+                    categoryName: data?.categoryNames?.[0]?.name || "Meat Shop",
+                    description: data?.coupon_title || "",
+                    ratings: data?.ratings || 0,
+                    subDescription: data?.coupon_sub_title || "",
+                    time: formatDateToDDMMYYYY(data?.expired_date_time),
+                  }}
+                />
+              </>
+            ))}
+        </div>
       </div>
-      <h2 className="live_title">Live Coupons</h2>
     </div>
   );
 };

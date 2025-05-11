@@ -36,12 +36,12 @@
   
     &__crown {
       position: absolute;
-      top: -16px;
+      top: -10px;
       left: 50px; //-10px
       background-color: #f97316;
       border-radius: 4px;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,6 +87,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      min-width: 0;
       
       @media (max-width: 480px) {
         width: 100%;
@@ -110,6 +111,10 @@
       color: #1f2937;
       word-break: break-word;
       margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
   
     &__address {
@@ -119,7 +124,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 300px;
+      // max-width: 300px;
     }
   
     &__details {

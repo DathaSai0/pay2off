@@ -28,6 +28,7 @@
     padding: 10px 12px;
     border-radius: 6px;
     border: 1px solid #e0e0e0;
+    width: 40%;
 
     .search-icon {
       margin-right: 8px;
@@ -40,17 +41,89 @@
         font-size: 14px;
         background: transparent;
       }
+      @media (max-width: 768px) {
+       width: 70%;
+      }
 }
 
+.data-content{
+  margin:0px 15%;
+  @media (max-width: 768px) {
+    margin: 0px 5%;
+  }
+}
 .search-wrapper {
-    display: flex;
-    justify-content: space-around; 
-    padding: 24px; 
-  
-    // Optional: to center vertically if needed
-    // align-items: center;
-    // min-height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 20px;
+
+  & > * {
+    flex: 0 1 calc(50% - 1rem); // Two items per row with gap
+    max-width: 300px; // Optional: set a max width for visual control
   }
+
+  @media (max-width: 768px) {
+    & > * {
+      flex: 0 1 100%; // Full width for smaller screens
+    }
+  }
+}
+
+.shop-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  // padding: 20px;
+  & > * {
+    flex: 0 1 calc(50% - 1rem); // Two cards per row with spacing
+    max-width: calc(50% - 1rem); // Ensure it doesn’t overflow
+  }
+
+  @media (max-width: 768px) {
+    & > * {
+      flex: 0 1 100%; // One card per row on mobile
+      max-width: 100%;
+    }
+  }
+ 
+}
+
   .live_title{
-    margin-left:26%;
+    text-align: left;
+    // margin-left:26%;
   }
+
+  .coupon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 10px;
+    // margin:0px 10%;
+  
+    // & > * {
+    //   flex: 0 1 calc(50% - 1rem); // Two items per row with spacing
+    //   max-width: 300px;           // Optional: control max size
+    // }
+  
+    @media (max-width: 768px) {
+      & > * {
+        flex: 0 1 100%; // One per row on mobile
+      }
+    }
+  }
+  .recent-search{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    background: #fff;
+  }
+  

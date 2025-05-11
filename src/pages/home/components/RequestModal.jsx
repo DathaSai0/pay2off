@@ -8,10 +8,47 @@ const RequestModal = () => {
   const openRequestModal = () => {
     setIsModalOpen(true);
   };
+  const [formData, setFormData] = useState({
+    phone: "",
+    requestType: "",
+    comment: "",
+  });
 
-  const handleSubmit = () => {
+  const handleClose = () => {
+    setFormData({ phone: "", requestType: "", comment: "" });
+    setErrors({});
     setIsModalOpen(false);
   };
+
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = () => {
+    const validationErrors = {};
+
+    if (!formData.phone.trim()) {
+      validationErrors.phone = "Phone number is required.";
+    }
+    if (!formData.requestType.trim()) {
+      validationErrors.requestType = "Request type is required.";
+    }
+    if (!formData.comment.trim()) {
+      validationErrors.comment = "Comment is required.";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Submit logic
+    console.log("Submitted:", formData);
+
+    // Reset and close
+    setFormData({ phone: "", requestType: "", comment: "" });
+    setErrors({});
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div
@@ -28,16 +65,17 @@ const RequestModal = () => {
 
       <DialogModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleClose}
         // style={{ minWidth: "400px", padding: "16px" }}
         style={{
           minWidth: "30%",
           width: "90%",
           maxWidth: "400px",
           padding: "16px",
-          height: "auto",
+          height: "75vh",
           borderRadius: "12px",
           boxSizing: "border-box",
+          overflowY: "auto",
         }}
       >
         <div className="request-form">
@@ -50,6 +88,7 @@ const RequestModal = () => {
             placeholder="Enter Mobile Number"
             className="request-input"
           />
+          {errors.phone && <p className="error-text">{errors.phone}</p>}
 
           <label htmlFor="requestType">
             Choose Your Request<span style={{ color: "red" }}>*</span>
@@ -60,6 +99,9 @@ const RequestModal = () => {
             <option value="info">Need More Info</option>
             <option value="custom">Custom Request</option>
           </select>
+          {errors.requestType && (
+            <p className="error-text">{errors.requestType}</p>
+          )}
 
           <label htmlFor="comment">Please Comment, How Do We Help You?*</label>
           <textarea
@@ -68,12 +110,10 @@ const RequestModal = () => {
             placeholder="Type your message..."
             className="request-input"
           ></textarea>
+          {errors.comment && <p className="error-text">{errors.comment}</p>}
 
           <div className="request-buttons">
-            <button
-              className="cancel-btn"
-              onClick={() => setIsModalOpen(false)}
-            >
+            <button className="cancel-btn" onClick={handleClose}>
               Cancel
             </button>
             <button className="submit-btn" onClick={handleSubmit}>
