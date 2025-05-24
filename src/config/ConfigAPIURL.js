@@ -1,6 +1,6 @@
 class ConfigAPIURL {
   //  base URL
-  static baseUrl = "http://192.168.1.236:3040";
+  static baseUrl = "http://106.51.48.11:3040";
 
   // static pruchaseChallenge = this.baseUrl + "/user/sub/purchase"; // POST
   static largeAdvertisement = this.baseUrl + "/core/dashboard/categories"; // GET
@@ -35,9 +35,6 @@ class ConfigAPIURL {
   static supportRequest =
     this.baseUrl + "/core/dashboard/support-request-type/user";
 
-
-
-    
   static sendSupportMessage =
     this.baseUrl + "/core/dashboard/support-request-type";
 }

@@ -1,2 +1,2 @@
 export const REACT_GOOGLE_MAP_API_KEY =
-  "AIzaSyCA2Gk8KDVG9GqDKTxBjKVTgYZV_fQOr_A";
+  "AIzaSyCpQD-Sskq7ssinOGmxKftWSTcj5uEI4fM";

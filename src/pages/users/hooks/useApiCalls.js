@@ -18,10 +18,11 @@ function useApiCalls() {
 
   useEffect(() => {
     getCategories();
-    getTrendingCoupons();
     getLargeAdds();
     getSmallAdds();
+    getTrendingCoupons();
   }, []);
+
   const getCategories = async () => {
     setCategoryList((p) => ({ ...p, isLoading: true }));
     try {
