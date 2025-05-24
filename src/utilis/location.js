@@ -1,8 +1,13 @@
 import ConfigAPIURL from "../config/ConfigAPIURL";
 import APIRequest from "./APIRequest";
 
-export const handleLocateMe = async (setLocationData) => {
+export const handleLocateMe = async (
+  setLocationData,
+  setLoading,
+  dismissModal
+) => {
   if ("geolocation" in navigator) {
+    setLoading?.(true);
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const lat = position.coords.latitude;
@@ -25,12 +30,16 @@ export const handleLocateMe = async (setLocationData) => {
 
           localStorage.setItem("userLocation", JSON.stringify(updatedLocation));
           setLocationData?.(updatedLocation); // update state in component
+          dismissModal?.();
         } catch (error) {
           console.error("Error calling location API:", error);
+        } finally {
+          setLoading?.(false);
         }
       },
       (error) => {
         console.error("Error getting location:", error.message);
+        setLoading?.(false);
       }
     );
   } else {

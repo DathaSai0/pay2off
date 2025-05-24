@@ -10,6 +10,7 @@ import { formatDateToDDMMYYYY } from "../users/utils/util";
 import CategoryDetailsCard from "../../components/CategoryDetailsCard/Index";
 import { saveToRecentSearch } from "../../utilis/recentSearch";
 import { FaClockRotateLeft } from "react-icons/fa6";
+import { ClipLoader, PulseLoader } from "react-spinners";
 
 const CategorySearch = () => {
   const navigate = useNavigate();
@@ -20,6 +21,12 @@ const CategorySearch = () => {
   const [hasMore, setHasMore] = useState(true);
   const handleBack = () => {
     navigate(-1);
+  };
+  const [searchLoading, setSearchLoading] = useState(false);
+  const handleSearch = async (query) => {
+    setSearchLoading(true);
+    await services?.searchItems(query);
+    setSearchLoading(false);
   };
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("recentSearches")) || [];
@@ -84,7 +91,10 @@ const CategorySearch = () => {
             placeholder="Enter Shop or Category Name"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyUp={() => services?.searchItems(searchQuery)}
+            // onKeyUp={() => services?.searchItems(searchQuery)}
+            onKeyUp={() => {
+              if (searchQuery.trim()) handleSearch(searchQuery);
+            }}
           />
         </div>
       </div>
@@ -119,12 +129,24 @@ const CategorySearch = () => {
         {searchQuery.trim() !== "" && (
           <>
             <div className="search-wrapper">
-              {services?.category?.length > 0 &&
+              {searchLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "20px",
+                  }}
+                >
+                  <PulseLoader size={30} color="#36d7b7" />
+                </div>
+              ) : (
+                services?.category?.length > 0 &&
                 services?.category?.map((data, ind) => (
-                  <div onClick={() => handleNavigate(data)}>
+                  <div onClick={() => handleNavigate(data)} key={ind}>
                     <SearchCardCategory data={data} />
                   </div>
-                ))}
+                ))
+              )}
             </div>
 
             <div className="shop-wrapper">
@@ -133,9 +155,9 @@ const CategorySearch = () => {
                   <div
                     onClick={() => handleClick(data?._id, data?.name)}
                     style={{ cursor: "pointer" }}
+                    key={data._id}
                   >
                     <CategoryDetailsCard
-                      key={data._id}
                       name={data.name}
                       address={data.landmark}
                       logo={data?.image}

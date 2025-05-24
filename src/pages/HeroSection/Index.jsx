@@ -18,6 +18,8 @@ import {
   MdOutlineLocationOn,
 } from "react-icons/md";
 import useServices from "./hooks/useServices";
+import { ClipLoader } from "react-spinners";
+
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,9 +29,13 @@ const NavBar = () => {
   const [locationData, setLocationData] = useState(
     JSON.parse(localStorage.getItem("userLocation"))
   );
-  console.log("Loc", locationData);
+  const [loading, setLoading] = useState(false);
   const services = useServices();
-
+  const dismissModal = () => {
+    setIsModalOpen(false);
+    setSearchQuery("");
+    services?.setLocation([]);
+  };
   const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
@@ -40,8 +46,14 @@ const NavBar = () => {
     }
   }, [dispatch]);
   useEffect(() => {
-    handleLocateMe(setLocationData);
+    const savedLocation = localStorage.getItem("userLocation");
+    if (savedLocation) {
+      setLocationData(JSON.parse(savedLocation));
+    } else {
+      handleLocateMe(setLocationData, setLoading); // Only call this if not previously saved
+    }
   }, []);
+
   const bannerTypeClass =
     currentLink !== "Home"
       ? `faq_background ${pageType}`
@@ -144,7 +156,7 @@ const NavBar = () => {
       </div>
       <DialogModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={dismissModal}
         style={{ width: "600px", height: "80%" }}
       >
         <div className="location-modal">
@@ -156,40 +168,75 @@ const NavBar = () => {
               type="text"
               placeholder="Area Codes, Cities, or Country wide"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyUp={() => services?.searchLocation(searchQuery)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSearchQuery(value);
+                if (value.trim()) {
+                  services?.searchLocation(value);
+                } else {
+                  services?.setLocation([]);
+                }
+              }}
+              // onKeyUp={() => services?.searchLocation(searchQuery)}
             />
           </div>
 
           <div
             className="use-current-location"
-            onClick={() => handleLocateMe(setLocationData)}
+            onClick={() =>
+              handleLocateMe(setLocationData, setLoading, dismissModal)
+            }
           >
             <span className="location-icon">📍</span>
-            <div>
-              <p className="use-text">Use Current Location</p>
-              <p className="desc-text">Access Location to Services Better</p>
-            </div>
+
+            {loading ? (
+              <ClipLoader size={20} color="#36d7b7" />
+            ) : (
+              <div>
+                <p className="use-text">Use Current Location</p>
+                <p className="desc-text">Access Location to Services Better</p>
+              </div>
+            )}
           </div>
           <div className="location-list">
-            {services?.location.map((location, index) => (
+            {services?.isLoading ? (
               <div
-                key={index}
-                className="location-item"
-                style={{ cursor: "pointer" }}
-                onClick={() => handleLocationSelect(location)}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "20px",
+                }}
               >
-                <MdOutlineLocationOn className="location-icon" />
-                <div className="location-info">
-                  <div className="location-title-text">
-                    {location.name || "Unknown Name"}
-                  </div>
-                  <div className="location-address">
-                    {location.formatted_address}
-                  </div>
-                </div>
+                <ClipLoader size={30} color="#36d7b7" />
               </div>
-            ))}
+            ) : services?.location.length > 0 ? (
+              <div className="location-list">
+                {services.location.map((location, index) => (
+                  <div
+                    key={index}
+                    className="location-item"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleLocationSelect(location)}
+                  >
+                    <MdOutlineLocationOn className="location-icon" />
+                    <div className="location-info">
+                      <div className="location-title-text">
+                        {location.name || "Unknown Name"}
+                      </div>
+                      <div className="location-address">
+                        {location.formatted_address}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p
+                style={{ textAlign: "center", padding: "20px", color: "#888" }}
+              >
+                No data found
+              </p>
+            )}
           </div>
         </div>
       </DialogModal>

@@ -6,6 +6,7 @@ const useServices = () => {
   const [popularCoupons, setPopularCoupons] = useState([]);
   const [category, setCategory] = useState([]);
   const [shopList, setShopList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPopularCoupons = async (page = 1, append = false) => {
     try {
@@ -25,6 +26,7 @@ const useServices = () => {
   };
 
   const searchItems = async (search, page) => {
+    setIsLoading(true);
     try {
       const response = await APIRequest.request(
         "GET",
@@ -38,6 +40,8 @@ const useServices = () => {
     } catch (error) {
       console.error("Error searching location:", error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,6 +51,7 @@ const useServices = () => {
     searchItems,
     category,
     shopList,
+    isLoading,
   };
 };
 export default useServices;

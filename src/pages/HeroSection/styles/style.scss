@@ -194,6 +194,28 @@
         font-size: 14px;
       }
     }
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px;
+  
+      .location-icon {
+        margin-right: 0;
+        margin-bottom: 6px;
+      }
+  
+      .text-group {
+        align-items: flex-start;
+      }
+  
+      .use-text {
+        font-size: 14px;
+      }
+  
+      .desc-text {
+        font-size: 10px;
+      }
+    }
   }
 
   .breadcrumb {

@@ -4,8 +4,10 @@ import ConfigAPIURL from "../../../config/ConfigAPIURL";
 
 const useServices = () => {
   const [location, setLocation] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchLocation = async (query) => {
+    setIsLoading(true);
     try {
       const response = await APIRequest.request(
         "GET",
@@ -16,12 +18,16 @@ const useServices = () => {
     } catch (error) {
       console.error("Error searching location:", error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return {
     location,
     searchLocation,
+    setLocation,
+    isLoading,
   };
 };
 export default useServices;
