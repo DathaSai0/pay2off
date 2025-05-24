@@ -10,7 +10,7 @@ import marketerFrame from "../../assets/Images/marketFrame.png";
 import { IoMdHome } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { LuLocateFixed } from "react-icons/lu";
-import { setCurrentLink } from "../../Redux/pageTypeSlice";
+import { setCurrentLink, setLocation } from "../../Redux/pageTypeSlice";
 import HomePageSection from "./Components/HomePageSection";
 import DynamicSection from "./Components/DynamicSection";
 import {
@@ -39,6 +39,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
+  const consoleLocation = useSelector((state) => state.pageType.location);
+  console.log(consoleLocation, "console");
   useEffect(() => {
     const savedLink = localStorage.getItem("currentLink");
     if (savedLink) {
@@ -101,7 +103,7 @@ const NavBar = () => {
 
     localStorage.setItem("userLocation", JSON.stringify(updatedLocation));
     setLocationData(updatedLocation);
-
+    dispatch?.(setLocation(updatedLocation));
     // Close the modal after selecting the location
     setIsModalOpen(false);
   };
@@ -122,18 +124,36 @@ const NavBar = () => {
             </div>
 
             <div className="location-wrapper">
-              <div className="location_desk" onClick={openLocationModal}>
+              <div
+                className="location_desk"
+                onClick={openLocationModal}
+                title={locationData?.locationData}
+              >
                 <MdOutlineLocationOn fontSize={18} />
-                {locationData?.locationData}
+                {/* {locationData?.locationData} */}
+                {locationData?.locationData?.length > 40
+                  ? locationData.locationData.slice(0, 40) + "..."
+                  : locationData?.locationData}
                 <MdOutlineKeyboardArrowDown fontSize={18} />
               </div>
 
               <button
                 className="locate-button"
-                onClick={() => handleLocateMe(setLocationData)}
+                onClick={() =>
+                  handleLocateMe(
+                    setLocationData,
+                    setLoading,
+                    dismissModal,
+                    dispatch
+                  )
+                }
               >
                 <LuLocateFixed fontSize={20} />
-                Locate Me
+                {loading ? (
+                  <ClipLoader size={20} color="#36d7b7" />
+                ) : (
+                  "Locate Me"
+                )}
               </button>
             </div>
           </div>
@@ -184,7 +204,12 @@ const NavBar = () => {
           <div
             className="use-current-location"
             onClick={() =>
-              handleLocateMe(setLocationData, setLoading, dismissModal)
+              handleLocateMe(
+                setLocationData,
+                setLoading,
+                dismissModal,
+                dispatch
+              )
             }
           >
             <span className="location-icon">📍</span>

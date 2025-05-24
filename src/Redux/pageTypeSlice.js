@@ -11,6 +11,11 @@ const initialState = {
     typeof window !== "undefined"
       ? localStorage.getItem("currentLink") || "Home"
       : "Home",
+  location: {
+    latitude: null,
+    longitude: null,
+    locationData: "",
+  },
 };
 export const pageTypeSlice = createSlice({
   name: "PAGE_TYPE",
@@ -29,9 +34,14 @@ export const pageTypeSlice = createSlice({
         localStorage.setItem("currentLink", action.payload);
       }
     },
+    setLocation: (state, action) => {
+      const { latitude, longitude, locationData } = action.payload;
+      state.location = { latitude, longitude, locationData };
+    },
   },
 });
 
-export const { handleChangePage, setCurrentLink } = pageTypeSlice.actions;
+export const { handleChangePage, setCurrentLink, setLocation } =
+  pageTypeSlice.actions;
 
 export default pageTypeSlice.reducer;

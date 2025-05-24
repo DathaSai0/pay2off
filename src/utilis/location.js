@@ -1,10 +1,12 @@
 import ConfigAPIURL from "../config/ConfigAPIURL";
+import { setLocation } from "../Redux/pageTypeSlice";
 import APIRequest from "./APIRequest";
 
 export const handleLocateMe = async (
   setLocationData,
   setLoading,
-  dismissModal
+  dismissModal,
+  dispatch
 ) => {
   if ("geolocation" in navigator) {
     setLoading?.(true);
@@ -29,7 +31,8 @@ export const handleLocateMe = async (
           };
 
           localStorage.setItem("userLocation", JSON.stringify(updatedLocation));
-          setLocationData?.(updatedLocation); // update state in component
+          setLocationData?.(updatedLocation);
+          dispatch?.(setLocation(updatedLocation));
           dismissModal?.();
         } catch (error) {
           console.error("Error calling location API:", error);
