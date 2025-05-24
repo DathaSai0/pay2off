@@ -7,7 +7,7 @@ const DialogModal = ({ isOpen, onClose, style, closeBtn, children }) => {
       <div className="custom-modal-backdrop" onClick={onClose}>
         <div
           className="custom-modal"
-          style={style}
+          style={{ ...style }}
           onClick={(e) => e.stopPropagation()}
         >
           {!closeBtn && (

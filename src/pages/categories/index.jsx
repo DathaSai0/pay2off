@@ -75,6 +75,7 @@ function Categories() {
                 isFavorite={true}
                 logo={data?.image}
                 ref={isLast ? lastCardRef : null}
+                onClick={() => navigate(`/storeDetails?id=${data?._id}`)}
               />
             );
           })}

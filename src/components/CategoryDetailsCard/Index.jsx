@@ -17,6 +17,7 @@ const CategoryDetailsCard = ({
   id,
   style,
   ref,
+  onClick,
 }) => {
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -31,8 +32,10 @@ const CategoryDetailsCard = ({
         width: showContent && "100%",
         maxWidth: showContent && "100%",
         padding: showContent && "1rem",
+        cursor: "pointer",
       }}
       ref={ref || null}
+      onClick={onClick}
     >
       <div className="business-card__logo-container">
         {!showContent && (
