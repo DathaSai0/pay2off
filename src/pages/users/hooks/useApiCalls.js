@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import APIRequest from "../../../utilis/APIRequest";
 import ConfigAPIURL from "../../../config/ConfigAPIURL";
+import { useSelector } from "react-redux";
 
 function useApiCalls() {
+  const locationState = useSelector((state) => state.pageType);
+
   const [categoryList, setCategoryList] = useState({
     data: [],
     isLoading: false,
@@ -22,6 +25,10 @@ function useApiCalls() {
     getSmallAdds();
     getTrendingCoupons();
   }, []);
+
+  useEffect(() => {
+    getTrendingCoupons();
+  }, [JSON.stringify(locationState?.location)]);
 
   const getCategories = async () => {
     setCategoryList((p) => ({ ...p, isLoading: true }));
