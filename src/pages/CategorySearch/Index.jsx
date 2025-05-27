@@ -128,26 +128,26 @@ const CategorySearch = () => {
       <div className="data-content">
         {searchQuery.trim() !== "" && (
           <>
-            <div className="search-wrapper">
-              {searchLoading ? (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    padding: "20px",
-                  }}
-                >
-                  <PulseLoader size={30} color="#F15700" />
-                </div>
-              ) : (
-                services?.category?.length > 0 &&
-                services?.category?.map((data, ind) => (
-                  <div onClick={() => handleNavigate(data)} key={ind}>
-                    <SearchCardCategory data={data} />
-                  </div>
-                ))
-              )}
-            </div>
+            {searchLoading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "20px",
+                }}
+              >
+                <PulseLoader size={30} color="#F15700" />
+              </div>
+            ) : (
+              <div className="search-wrapper">
+                {services?.category?.length > 0 &&
+                  services.category.map((data, ind) => (
+                    <div onClick={() => handleNavigate(data)} key={ind}>
+                      <SearchCardCategory data={data} />
+                    </div>
+                  ))}
+              </div>
+            )}
 
             <div className="shop-wrapper">
               {services?.shopList?.length > 0 &&
@@ -176,9 +176,9 @@ const CategorySearch = () => {
         {searchQuery.trim() === "" && (
           <>
             <h2>Popular Coupons</h2>
-            <div className="coupon-grid">
-              {services?.popularCoupons?.length > 0 &&
-                services?.popularCoupons?.map((data, ind) => (
+            {services?.popularCoupons?.length > 0 ? (
+              <div className="coupon-grid">
+                {services.popularCoupons.map((data, ind) => (
                   <CouponCard
                     key={ind}
                     {...{
@@ -192,7 +192,12 @@ const CategorySearch = () => {
                     }}
                   />
                 ))}
-            </div>
+              </div>
+            ) : !loading ? (
+              <p style={{ textAlign: "center", color: "#888" }}>
+                No coupons found.
+              </p>
+            ) : null}
             {loading && (
               <p style={{ textAlign: "center" }}>Loading more coupons...</p>
             )}

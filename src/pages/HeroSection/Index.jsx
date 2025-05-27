@@ -19,6 +19,7 @@ import {
 } from "react-icons/md";
 import useServices from "./hooks/useServices";
 import { ClipLoader } from "react-spinners";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +37,7 @@ const NavBar = () => {
     setSearchQuery("");
     services?.setLocation([]);
   };
+  const location = useLocation();
   const dispatch = useDispatch();
   const pageType = useSelector((state) => state.pageType.type);
   const currentLink = useSelector((state) => state.pageType.currentLink);
@@ -47,6 +49,12 @@ const NavBar = () => {
       dispatch(setCurrentLink(savedLink));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      dispatch(setCurrentLink("Home"));
+    }
+  }, [location.pathname, dispatch]);
   useEffect(() => {
     const savedLocation = localStorage.getItem("userLocation");
     if (savedLocation) {
@@ -55,7 +63,6 @@ const NavBar = () => {
       handleLocateMe(setLocationData, setLoading); // Only call this if not previously saved
     }
   }, []);
-
   const bannerTypeClass =
     currentLink !== "Home"
       ? `faq_background ${pageType}`
