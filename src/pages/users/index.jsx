@@ -76,15 +76,16 @@ function Users() {
           />
         </div>
       )}
-
-      <h1
-        className="user-categories-heading"
-        style={{
-          marginTop: "40px",
-        }}
-      >
-        Trending Coupons
-      </h1>
+      {services?.couponsList?.top?.length > 0 && (
+        <h1
+          className="user-categories-heading"
+          style={{
+            marginTop: "40px",
+          }}
+        >
+          Trending Coupons
+        </h1>
+      )}
       {services?.couponsList?.top?.length > 0 && (
         <div
           style={{
