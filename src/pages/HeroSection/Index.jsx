@@ -150,7 +150,7 @@ const NavBar = () => {
               >
                 <LuLocateFixed fontSize={20} />
                 {loading ? (
-                  <ClipLoader size={20} color="#36d7b7" />
+                  <ClipLoader size={20} color="#F15700" />
                 ) : (
                   "Locate Me"
                 )}
@@ -215,7 +215,7 @@ const NavBar = () => {
             <span className="location-icon">📍</span>
 
             {loading ? (
-              <ClipLoader size={20} color="#36d7b7" />
+              <ClipLoader size={20} color="#F15700" />
             ) : (
               <div>
                 <p className="use-text">Use Current Location</p>
@@ -232,7 +232,7 @@ const NavBar = () => {
                   padding: "20px",
                 }}
               >
-                <ClipLoader size={30} color="#36d7b7" />
+                <ClipLoader size={30} color="#F15700" />
               </div>
             ) : services?.location.length > 0 ? (
               <div className="location-list">

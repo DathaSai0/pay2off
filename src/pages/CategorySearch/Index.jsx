@@ -137,7 +137,7 @@ const CategorySearch = () => {
                     padding: "20px",
                   }}
                 >
-                  <PulseLoader size={30} color="#36d7b7" />
+                  <PulseLoader size={30} color="#F15700" />
                 </div>
               ) : (
                 services?.category?.length > 0 &&
