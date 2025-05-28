@@ -21,7 +21,7 @@ function SuccessModal({ isOpen, onClose }) {
           <p>Our Support team will email you shortly.</p>
         </div>
 
-        <PrimaryButton>Close</PrimaryButton>
+        <PrimaryButton onClick={onClose}>Close</PrimaryButton>
       </div>
     </DialogModal>
   );

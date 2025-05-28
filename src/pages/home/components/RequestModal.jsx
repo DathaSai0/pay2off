@@ -3,6 +3,7 @@ import DialogModal from "../../../components/DialogModal/Index";
 import { LuMessageCircleQuestion } from "react-icons/lu";
 import { FaSearch } from "react-icons/fa";
 import useApiCalls from "../hooks/useApiCalls";
+import SuccessModal from "../../../components/succesModal";
 
 const RequestModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,14 +11,12 @@ const RequestModal = () => {
   const openRequestModal = () => {
     setIsModalOpen(true);
   };
-  const [formData, setFormData] = useState({
-    phone: "",
-    requestType: "",
-    comment: "",
-  });
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
   const services = useApiCalls();
+  const { contactDetails, setContactDetails } = services;
   const handleClose = () => {
-    setFormData({ phone: "", requestType: "", comment: "" });
+    setContactDetails({ phone_number: "", req_type: "", message: "" });
     setErrors({});
     setIsModalOpen(false);
   };
@@ -25,16 +24,19 @@ const RequestModal = () => {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const validationErrors = {};
 
-    if (!formData.phone.trim()) {
+    if (!contactDetails.phone_number.trim()) {
       validationErrors.phone = "Phone number is required.";
     }
-    if (!formData.requestType.trim()) {
-      validationErrors.requestType = "Request type is required.";
+    if (!/^\d{10}$/.test(contactDetails.phone_number.trim())) {
+      validationErrors.phone = "Phone number must be exactly 10 digits.";
     }
-    if (!formData.comment.trim()) {
+    // if (!contactDetails.req_type.trim()) {
+    //   validationErrors.requestType = "Request type is required.";
+    // }
+    if (!contactDetails.message.trim()) {
       validationErrors.comment = "Comment is required.";
     }
 
@@ -44,10 +46,10 @@ const RequestModal = () => {
     }
 
     // Submit logic
-    console.log("Submitted:", formData);
-
+    await services?.handleSendMessage();
+    setIsSuccessOpen(true);
     // Reset and close
-    setFormData({ phone: "", requestType: "", comment: "" });
+    setContactDetails({ phone_number: "", req_type: "", message: "" });
     setErrors({});
     setIsModalOpen(false);
   };
@@ -90,6 +92,17 @@ const RequestModal = () => {
             id="phone"
             placeholder="Enter Mobile Number"
             className="request-input"
+            value={contactDetails.phone_number}
+            onChange={(e) => {
+              setContactDetails({
+                ...contactDetails,
+                phone_number: e.target.value.slice(0, 10),
+              });
+
+              if (errors.phone) {
+                setErrors((prev) => ({ ...prev, phone: "" }));
+              }
+            }}
           />
           {errors.phone && <p className="error-text">{errors.phone}</p>}
 
@@ -109,7 +122,7 @@ const RequestModal = () => {
               cursor: "pointer",
             }}
           >
-            {formData.requestType || "Select a request type"}
+            {contactDetails.req_type || "Select a request type"}
           </div>
           {/* <select id="requestType" className="request-input"></select> */}
           {errors.requestType && (
@@ -122,6 +135,13 @@ const RequestModal = () => {
             rows={4}
             placeholder="Type your message..."
             className="request-input"
+            value={contactDetails.message}
+            onChange={(e) => {
+              setContactDetails({ ...contactDetails, message: e.target.value });
+              if (errors.comment) {
+                setErrors((prev) => ({ ...prev, comment: "" }));
+              }
+            }}
           ></textarea>
           {errors.comment && <p className="error-text">{errors.comment}</p>}
 
@@ -169,7 +189,7 @@ const RequestModal = () => {
             services?.requestType?.map((val, ind) => (
               <div
                 onClick={() => {
-                  setFormData({ ...formData, requestType: val });
+                  setContactDetails({ ...contactDetails, req_type: val });
                   setIsRequest(false);
                 }}
                 style={{
@@ -186,6 +206,10 @@ const RequestModal = () => {
           )}
         </div>
       </DialogModal>
+      <SuccessModal
+        isOpen={isSuccessOpen}
+        onClose={() => setIsSuccessOpen(false)}
+      />
     </>
   );
 };

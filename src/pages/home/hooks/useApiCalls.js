@@ -11,6 +11,12 @@ function useApiCalls() {
   useEffect(() => {
     getTestimonials();
   }, []);
+  const [contactDetails, setContactDetails] = useState({
+    phone_number: "",
+    req_type: "",
+    message: "",
+    user_type: "user",
+  });
 
   const getTestimonials = async () => {
     try {
@@ -64,10 +70,30 @@ function useApiCalls() {
       console.log(error);
     }
   };
+
+  const handleSendMessage = async () => {
+    try {
+      const response = await APIRequest.request(
+        "POST",
+        ConfigAPIURL.sendSupportMessage,
+        JSON.stringify({
+          ...contactDetails,
+        })
+      );
+      if (response?.error === false) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     testimonials,
     getRequestType,
     requestType,
+    handleSendMessage,
+    setContactDetails,
+    contactDetails,
   };
 }
 
